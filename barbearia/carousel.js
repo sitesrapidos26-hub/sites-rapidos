@@ -65,3 +65,10 @@ prev.addEventListener("click", ()=>{
     prevSlide()
     pauseAuto()
 })
+
+window.addEventListener("resize", () => {
+    slideWidth = slides[0].offsetWidth + 20
+    visibleSlides = window.innerWidth < 768 ? 1 : 3
+    maxIndex = slides.length - visibleSlides
+    updateCarousel()
+})
