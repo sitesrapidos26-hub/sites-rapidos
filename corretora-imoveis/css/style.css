@@ -478,6 +478,33 @@ footer{
     padding:20px;
 }
 
+/* CTA TEMPLATE */
+
+.cta-template{
+background:white;
+padding:70px 20px;
+margin-top:40px;
+border-top:1px solid #e5e7eb;
+}
+
+.btn-template{
+display:inline-block;
+margin-top:25px;
+background:#2563eb;
+color:white;
+padding:12px 26px;
+border-radius:8px;
+text-decoration:none;
+font-weight:500;
+transition:.25s;
+}
+
+.btn-template:hover{
+transform:translateY(-3px);
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
+background:#1d4ed8;
+}
+
 /* WHATSAPP FLOAT */
 
 .whatsapp-float{
@@ -649,3 +676,4 @@ footer{
     }
 
 }
+
