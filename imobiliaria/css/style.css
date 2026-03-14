@@ -1,0 +1,651 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+    scroll-padding-top:90px;
+}
+
+body{
+    background:#f4f6f8;
+    color:#1f2933;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+/* HEADER */
+
+header{
+    background:#0f172a;
+    color:white;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+header .nav{
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+header .btn{
+    white-space:nowrap;
+}
+
+.logo{
+    color:#fbbf24;
+}
+
+/* MENU HAMBURGER */
+
+.menu-toggle{
+    display:none;
+    font-size:26px;
+    cursor:pointer;
+    color:white;
+}
+
+/* NAV */
+
+nav ul{
+    display:flex;
+    gap:25px;
+    list-style:none;
+    flex-wrap:wrap;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+    padding:6px 12px;
+    border-radius:6px;
+    transition:all .25s ease;
+}
+
+nav a:hover{
+    color:#fbbf24;
+    background:rgba(251,191,36,0.15);
+}
+
+nav a.active{
+    color:#fbbf24;
+    background:rgba(251,191,36,0.15);
+}
+
+/* BOTÕES */
+
+.btn{
+    background:#fbbf24;
+    color:#0f172a;
+    padding:10px 18px;
+    border-radius:6px;
+    text-decoration:none;
+    font-weight:500;
+    border:none;
+    cursor:pointer;
+}
+
+.btn,
+.btn-card{
+    transition:all .25s ease;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.btn-card:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+/* HERO */
+
+.hero{
+    height:70vh;
+    background:url("../images/hero/hero.jpg") center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2));
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero h1{
+    font-size:42px;
+}
+
+.hero .btn{
+    margin-top:20px;
+    display:inline-block;
+}
+
+/* DESTAQUES */
+
+.destaques{
+    padding:80px 0 40px;
+}
+
+/* BUSCA */
+
+.imoveis{
+    padding:40px 0 80px;
+}
+
+.busca{
+    background:white;
+    padding:30px 0;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin:30px 0;
+}
+
+.busca-box{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+}
+
+.busca select{
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #ddd;
+}
+
+/* GRID IMÓVEIS */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+    margin-top:30px;
+}
+
+/* CARD */
+
+.card{
+    background:white;
+    border-radius:10px;
+    overflow:hidden; 
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+    transition:.3s; 
+    position:relative; 
+} 
+
+.card:hover{
+    transform:translateY(-6px) 
+}
+
+
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.card-info{
+    padding:16px;
+}
+
+.preco{
+    display:block;
+    margin:10px 0;
+    font-weight:600;
+    color:#2563eb;
+}
+
+.btn-card{
+    display:inline-block;
+    background:#2563eb;
+    color:white;
+    padding:8px 14px;
+    border-radius:6px;
+    text-decoration:none;
+}
+
+/* BADGES */
+
+.badge{
+    position:absolute;
+    top:10px;
+    left:10px;
+    padding:5px 10px;
+    border-radius:6px;
+    color:white;
+    font-size:12px;
+}
+
+.badge.novo{
+    background:#16a34a;
+}
+
+.badge.oportunidade{
+    background:#dc2626;
+}
+
+/* GALERIA */
+
+.galeria{
+    display:flex;
+    gap:5px;
+}
+
+.galeria img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.galeria button{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(0,0,0,0.5);
+    border:none;
+    color:white;
+    font-size:20px;
+    padding:5px 10px;
+    cursor:pointer;
+}
+
+.galeria .prev{
+    left:10px;
+}
+
+.galeria .next{
+    right:10px;
+}
+
+/* SOBRE */
+
+.sobre{
+    background:white;
+    padding:60px 0;
+}
+
+.sobre-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+}
+
+.sobre img{
+    width:100%;
+    border-radius:10px;
+}
+
+.sobre .btn{
+    margin-top:20px;
+    display:inline-block;
+}
+
+/* CONTATOS */
+
+.contatos{
+    padding:90px 0;
+    background:linear-gradient(180deg,#f8fafc,#eef2f7);
+}
+
+.titulo-contato{
+    text-align:center;
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.subtitulo-contato{
+    text-align:center;
+    color:#64748b;
+    margin-bottom:50px;
+    max-width:600px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.contato-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:28px;
+}
+
+.contato-card{
+    background:white;
+    padding:35px 25px;
+    border-radius:16px;
+    text-align:center;
+    text-decoration:none;
+    color:#1f2933;
+    box-shadow:0 8px 25px rgba(0,0,0,0.05);
+    transition:all .28s ease;
+    position:relative;
+    overflow:hidden;
+}
+
+.contato-card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 16px 35px rgba(0,0,0,0.08);
+}
+
+.contato-icon{
+    width:60px;
+    height:60px;
+    margin:0 auto 15px auto;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:26px;
+    background:#f1f5f9;
+}
+
+.contato-card h3{
+    margin-bottom:6px;
+    font-size:18px;
+}
+
+.contato-card p{
+    font-size:14px;
+    color:#64748b;
+    overflow-wrap:break-word;
+}
+
+.contato-card::after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:3px;
+    background:transparent;
+    transition:0.25s;
+}
+
+.contato-card:hover::after{
+    background:#2563eb;
+}
+
+.whatsapp i{color:#25d366;}
+.instagram i{color:#e1306c;}
+.facebook i{color:#1877f2;}
+.email i{color:#2563eb;}
+.telefone i{color:#f59e0b;}
+
+/* ATENDIMENTO */
+
+.atendimento{
+    padding:80px 0;
+    background:white;
+}
+
+.atendimento-box{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+}
+
+.atendimento-info h2{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.atendimento-info p{
+    color:#64748b;
+    max-width:450px;
+}
+
+.horarios{
+    background:#f8fafc;
+    border-radius:14px;
+    padding:30px;
+}
+
+.horario-item{
+    display:flex;
+    justify-content:space-between;
+    padding:12px 0;
+    border-bottom:1px solid #e2e8f0;
+}
+
+.horario-item:last-child{
+    border:none;
+}
+
+.horario-item span{color:#64748b;}
+.horario-item strong{color:#1f2933;}
+
+/* FORMULÁRIO */
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    max-width:500px;
+}
+
+form input,
+form textarea{
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+textarea{
+    resize:vertical;
+    min-height:120px;
+}
+
+/* FOOTER */
+
+footer{
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+/* WHATSAPP FLOAT */
+
+.whatsapp-float{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:60px;
+    height:60px;
+    background:#25d366;
+    color:white;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    text-decoration:none;
+    box-shadow:0 6px 15px rgba(0,0,0,0.2);
+    transition:all .25s ease;
+}
+
+.whatsapp-float:hover{
+    transform:scale(1.1);
+    box-shadow:0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* RESULTADO BUSCA */
+
+.resultado{
+    text-align:center;
+    margin-top:20px;
+    font-weight:500;
+    color:#334155;
+}
+
+/* RESPONSIVO */
+
+@media (max-width:768px){
+
+    .menu-toggle{
+        display:block;
+        justify-self:end;
+        font-size:26px;
+    }
+
+    .nav{
+        display:grid;
+        grid-template-columns:auto 1fr auto;
+        align-items:center;
+    }
+
+    /* LOGO - esquerda */
+
+    .logo{
+        grid-column:1;
+        justify-self:start;
+    }
+
+    /* WHATSAPP - meio */
+
+    header .btn{
+        grid-column:2;
+        justify-self:center;
+        padding:8px 14px;
+        font-size:14px;
+    }
+
+    /* HAMBURGER - direita */
+
+    .menu-toggle{
+        display:block;
+        grid-column:3;
+        justify-self:end;
+        font-size:26px;
+        cursor:pointer;
+    }
+
+    /* MENU */
+
+    nav{
+        grid-column:1 / -1;
+        width:100%;
+        display:none;
+    }
+
+    nav.active{
+        display:block;
+    }
+
+    nav ul{
+        flex-direction:column;
+        gap:10px;
+        margin-top:15px;
+    }
+
+    nav a{
+        display:block;
+    }
+
+    header .btn{
+        display:none;
+    }
+
+    /* HERO */
+
+    .hero{
+        height:60vh;
+        padding:20px;
+    }
+
+    .hero h1{
+        font-size:28px;
+    }
+
+    .hero p{
+        font-size:14px;
+    }
+
+    /* BUSCA */
+
+    .busca{
+        flex-direction:column;
+    }
+
+    .busca select,
+    .busca button{
+        width:100%;
+    }
+
+    /* SOBRE */
+
+    .sobre-grid{
+        grid-template-columns:1fr;
+    }
+
+    .sobre img{
+        order:-1;
+    }
+
+    /* ATENDIMENTO */
+
+    .atendimento-box{
+        grid-template-columns:1fr;
+    }
+
+    /* CONTATOS */
+
+    .contato-grid{
+        grid-template-columns:1fr;
+    }
+
+    /* HORÁRIOS */
+
+    .horario-item{
+        flex-direction:column;
+        gap:5px;
+    }
+
+    /* FOOTER */
+
+    footer{
+        font-size:14px;
+        padding:25px;
+    }
+
+    /* CONTAINER */
+
+    .container{
+        padding:20px 16px;
+    }
+
+}
