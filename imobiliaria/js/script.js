@@ -93,7 +93,7 @@ function criarCard(i) {
     const img = imgOriginal.startsWith('/') ? imgOriginal : `/imobiliaria/${imgOriginal}`;
 
     const badge = i.badge ? `<span class="badge ${i.badge}">${i.badge}</span>` : ""
-    const msg = `https://wa.me/5519999322908?text=${encodeURIComponent("Olá, tenho interesse no imóvel " + i.titulo)}`
+    const msg = `https://wa.me/5199999999999?text=${encodeURIComponent("Olá, tenho interesse no imóvel " + i.titulo)}`
 
     return `
     <div class="card">
