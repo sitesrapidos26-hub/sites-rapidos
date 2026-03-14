@@ -273,11 +273,13 @@ background:#3b82f6;
 /* SOBRE */
 
 .sobre{
-padding-top:50px; /* reduz espaço antes da seção */
+padding-top:50px;
 padding-bottom:70px;
-max-width:720px;
+max-width:900px;
 margin:auto;
 text-align:center;
+padding-left:20px; 
+padding-right:20px;
 }
 
 .sobre h2{
@@ -288,6 +290,8 @@ margin-bottom:20px;
 color:#9aa4b2;
 font-size:15px;
 line-height:1.7;
+max-width:720px; /* controla largura ideal de leitura */
+margin:auto;
 }
 
 
@@ -307,19 +311,23 @@ font-size:14px;
 @media(max-width:768px){
 
 .hero h1{
-font-size:34px;
+    font-size:34px;
 }
 
 section{
-padding:60px 8%;
+    padding:60px 8%;
 }
 
 .header{
-padding:18px 8%;
+    padding:18px 8%;
 }
 
 nav a{
-margin-left:18px;
+    margin-left:18px;
+}
+
+.sobre p{
+    max-width:100%; /* no mobile usa toda largura */
 }
 
 }
