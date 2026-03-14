@@ -86,11 +86,8 @@ window.addEventListener("DOMContentLoaded",()=>{
 })
 
 function criarCard(i) {
-    // AJUSTE AQUI: Garante que o caminho da imagem comece com /imobiliaria/
-    // Se no seu JSON a imagem estiver como "images/imoveis/casa-1.jpg", 
-    // o código abaixo adiciona o prefixo necessário.
     const imgOriginal = i.imagens[0];
-    const img = imgOriginal.startsWith('/') ? imgOriginal : `/imobiliaria/${imgOriginal}`;
+    const img = imgOriginal.startsWith('/imobiliaria/') ? imgOriginal : `/imobiliaria/${imgOriginal}`;
 
     const badge = i.badge ? `<span class="badge ${i.badge}">${i.badge}</span>` : ""
     const msg = `https://wa.me/5199999999999?text=${encodeURIComponent("Olá, tenho interesse no imóvel " + i.titulo)}`
