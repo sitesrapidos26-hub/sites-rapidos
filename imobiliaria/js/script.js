@@ -5,9 +5,9 @@ let exibidos=0
 const inicial=3
 const incremento=6
 
-fetch("/imobiliaria/data/imoveis.json")
-.then(res=>res.json())
-.then(data=>{
+fetch('/imobiliaria/data/imoveis.json')
+  .then(response => response.json())
+  .then(data => {
 
     todosImoveis=data.imoveis
 
