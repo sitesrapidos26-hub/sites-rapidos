@@ -5,18 +5,13 @@ let exibidos=0
 const inicial=3
 const incremento=6
 
-fetch('/imobiliaria/data/imoveis.json')
+fetch('/imobiliaria/data/imoveis.json') // Caminho do JSON corrigido
   .then(response => response.json())
   .then(data => {
-
-    todosImoveis=data.imoveis
-
+    todosImoveis = data.imoveis
     carregarDestaques()
-
-    imoveisFiltrados=[...todosImoveis]
-
+    imoveisFiltrados = [...todosImoveis]
     mostrarMais()
-
 })
 
 function carregarDestaques(){
@@ -90,38 +85,29 @@ window.addEventListener("DOMContentLoaded",()=>{
     document.getElementById("btnMais").addEventListener("click",mostrarMais)
 })
 
-function criarCard(i){
+function criarCard(i) {
+    // AJUSTE AQUI: Garante que o caminho da imagem comece com /imobiliaria/
+    // Se no seu JSON a imagem estiver como "images/imoveis/casa-1.jpg", 
+    // o código abaixo adiciona o prefixo necessário.
+    const imgOriginal = i.imagens[0];
+    const img = imgOriginal.startsWith('/') ? imgOriginal : `/imobiliaria/${imgOriginal}`;
 
-    const img=i.imagens[0]
-
-    const badge=i.badge ? `<span class="badge ${i.badge}">${i.badge}</span>` : ""
-
-    const msg=`https://wa.me/5511999999999?text=${encodeURIComponent("Olá, tenho interesse no imóvel " + i.titulo)}`
+    const badge = i.badge ? `<span class="badge ${i.badge}">${i.badge}</span>` : ""
+    const msg = `https://wa.me/5519999322908?text=${encodeURIComponent("Olá, tenho interesse no imóvel " + i.titulo)}`
 
     return `
-
     <div class="card">
-
         ${badge}
-
         <img src="${img}" alt="${i.titulo}">
-
         <div class="card-info">
-
             <h3>${i.titulo}</h3>
-
             <p>${i.cidadeNome} • ${i.quartos}</p>
-
             <span class="preco">R$ ${i.preco.toLocaleString()}</span>
-
             <a href="${msg}" target="_blank" class="btn-card">
                 Falar no WhatsApp
             </a>
-
         </div>
-
     </div>
-
     `
 }
 
