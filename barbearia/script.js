@@ -1,4 +1,4 @@
-// Animações e Menu
+// ====================== ANIMAÇÕES E MENU ======================
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add("show");
@@ -9,9 +9,13 @@ document.querySelectorAll(".fade").forEach(el => observer.observe(el));
 
 const menuBtn = document.getElementById("menu-btn");
 const menu = document.getElementById("menu");
+
 menuBtn.addEventListener("click", () => menu.classList.toggle("show"));
+
 document.addEventListener("click", e => {
-    if (!menu.contains(e.target) && !menuBtn.contains(e.target)) menu.classList.remove("show");
+    if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+        menu.classList.remove("show");
+    }
 });
 
 document.querySelectorAll("nav a").forEach(link => {
@@ -22,44 +26,64 @@ document.querySelectorAll("nav a").forEach(link => {
     });
 });
 
-// ====================== CAROUSEL - SEM FANTASMAS ======================
+
+// ====================== CAROUSEL ======================
 const track = document.getElementById('track');
 const nextBtn = document.getElementById('nextBtn');
 const prevBtn = document.getElementById('prevBtn');
 
-let currentIndex = 0;
-const cardWidth = 324; // 300px + 24px gap
+let cards = document.querySelectorAll('.corte-card');
 
-function updateCarousel() {
-    track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+// CLONA
+cards.forEach(card => {
+    const clone = card.cloneNode(true);
+    track.appendChild(clone);
+});
+
+cards = document.querySelectorAll('.corte-card');
+const originalLength = cards.length / 2;
+
+let currentIndex = 0;
+
+function getCardWidth() {
+    return document.querySelector('.corte-card').offsetWidth + 24;
 }
 
+function updateCarousel(smooth = true) {
+    const width = getCardWidth();
+    track.style.transition = smooth ? 'transform 0.5s ease' : 'none';
+    track.style.transform = `translateX(-${currentIndex * width}px)`;
+}
+
+// NEXT
 nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % 4;
+    currentIndex++;
     updateCarousel();
+
+    if (currentIndex >= originalLength) {
+        setTimeout(() => {
+            currentIndex = 0;
+            updateCarousel(false);
+        }, 500);
+    }
 });
 
+// PREV
 prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + 4) % 4;
+    if (currentIndex <= 0) {
+        currentIndex = originalLength;
+        updateCarousel(false);
+    }
+
+    currentIndex--;
     updateCarousel();
 });
 
-// Seleção de serviço
-document.querySelectorAll('.corte-card').forEach(card => {
-    card.addEventListener('click', () => {
-        resetAgendamento(1);
-        document.querySelectorAll('.corte-card').forEach(c => c.classList.remove('active'));
-        card.classList.add('active');
-        selectedService = card.dataset.servico;
-
-        stepBarbeiro.classList.add('show');
-        stepBarbeiro.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
-});
 
 // ====================== AGENDAMENTO ======================
-let selectedService = '', selectedBarber = '', selectedTime = '';
+let selectedService = '';
+let selectedBarber = '';
+let selectedTime = '';
 
 const stepBarbeiro = document.getElementById('step-barbeiro');
 const stepHorario = document.getElementById('step-horario');
@@ -71,55 +95,124 @@ const agenda = {
     "Carlos": ["09:30", "10:30", "14:30", "15:30", "16:30", "17:00"]
 };
 
+// RESET
 function resetAgendamento(nivel) {
     if (nivel <= 1) {
-        selectedBarber = ''; 
+        selectedBarber = '';
         selectedTime = '';
-        document.querySelectorAll('.barbeiro-card').forEach(b => b.classList.remove('active'));
+
+        document.querySelectorAll('.barbeiro-card')
+            .forEach(b => b.classList.remove('active'));
+
         stepBarbeiro.classList.remove('show');
+        stepBarbeiro.classList.add('hidden-step');
     }
+
     if (nivel <= 2) {
         selectedTime = '';
+
         horariosGrid.innerHTML = '';
+
         stepHorario.classList.remove('show');
+        stepHorario.classList.add('hidden-step');
+
         stepConfirmacao.classList.remove('show');
+        stepConfirmacao.classList.add('hidden-step');
     }
 }
 
+
+// ====================== CLICK SERVIÇO ======================
+track.addEventListener('click', (e) => {
+    const card = e.target.closest('.corte-card');
+    if (!card) return;
+
+    resetAgendamento(1);
+
+    document.querySelectorAll('.corte-card')
+        .forEach(c => c.classList.remove('active'));
+
+    card.classList.add('active');
+    selectedService = card.dataset.servico;
+
+    stepBarbeiro.classList.remove('hidden-step');
+    stepBarbeiro.classList.add('show');
+
+    stepBarbeiro.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+    });
+});
+
+
+// ====================== CLICK BARBEIRO ======================
 document.querySelectorAll('.barbeiro-card').forEach(card => {
     card.addEventListener('click', () => {
         resetAgendamento(2);
-        document.querySelectorAll('.barbeiro-card').forEach(b => b.classList.remove('active'));
+
+        document.querySelectorAll('.barbeiro-card')
+            .forEach(b => b.classList.remove('active'));
+
         card.classList.add('active');
         selectedBarber = card.dataset.barbeiro;
 
+        // gerar horários
         horariosGrid.innerHTML = '';
+
         agenda[selectedBarber].forEach(time => {
             const btn = document.createElement('div');
             btn.className = 'horario';
             btn.textContent = time;
-            btn.onclick = () => {
-                document.querySelectorAll('.horario').forEach(h => h.classList.remove('selected'));
+
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.horario')
+                    .forEach(h => h.classList.remove('selected'));
+
                 btn.classList.add('selected');
                 selectedTime = time;
+
+                stepConfirmacao.classList.remove('hidden-step');
                 stepConfirmacao.classList.add('show');
-                stepConfirmacao.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            };
+
+                stepConfirmacao.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            });
+
             horariosGrid.appendChild(btn);
         });
 
+        stepHorario.classList.remove('hidden-step');
         stepHorario.classList.add('show');
-        stepHorario.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        stepHorario.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
     });
 });
 
+
+// ====================== CONFIRMAR ======================
 document.getElementById('confirmar').addEventListener('click', () => {
     const nome = document.getElementById('nome').value.trim();
     const telefone = document.getElementById('telefone').value.trim();
+
     if (!selectedService || !selectedBarber || !selectedTime || !nome || !telefone) {
         alert("Por favor, preencha todos os campos.");
         return;
     }
-    const msg = `Olá! Gostaria de agendar:\n• Serviço: ${selectedService}\n• Barbeiro: ${selectedBarber}\n• Horário: ${selectedTime}\n• Nome: ${nome}\n• Telefone: ${telefone}`;
-    window.open(`https://wa.me/5519999322908?text=${encodeURIComponent(msg)}`, '_blank');
+
+    const msg = `Olá! Gostaria de agendar:
+• Serviço: ${selectedService}
+• Barbeiro: ${selectedBarber}
+• Horário: ${selectedTime}
+• Nome: ${nome}
+• Telefone: ${telefone}`;
+
+    window.open(
+        `https://wa.me/5519999322908?text=${encodeURIComponent(msg)}`,
+        '_blank'
+    );
 });
