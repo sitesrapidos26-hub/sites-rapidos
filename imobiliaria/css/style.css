@@ -213,7 +213,7 @@ nav a.active {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 28px;
     margin-top: 40px;
-    padding-bottom: 40px;
+    padding-bottom: 60px;          /* ← espaço extra para rolagem em qualquer zoom */
 }
 
 .card {
@@ -224,9 +224,8 @@ nav a.active {
     transition: all 0.35s ease;
     position: relative;
     cursor: pointer;
-    min-height: 420px;
-    display: flex;
-    flex-direction: column;
+    display: flex;                 /* ← novo */
+    flex-direction: column;        /* ← novo */
 }
 
 .card:hover {
@@ -241,10 +240,11 @@ nav a.active {
 
 .card img {
     width: 100%;
-    aspect-ratio: 5 / 3.2;     /* ou 5/3.5, 3/2 — escolha o que mais agrada visualmente */
+    aspect-ratio: 4 / 3;           /* ← principal correção */
     object-fit: cover;
     display: block;
     transition: transform 0.6s ease;
+    flex-shrink: 0;
 }
 
 .card-info {
@@ -358,7 +358,7 @@ nav a.active {
     backdrop-filter: blur(6px);
     align-items: center;
     justify-content: center;
-    padding: 16px;
+    padding: 20px;                 /* ← aumentado para zoom alto */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -374,16 +374,16 @@ nav a.active {
     background: white;
     width: 100%;
     max-width: 960px;
-    max-height: 92vh;
+    max-height: 96vh;                  /* ← aumentado */
     border-radius: 16px;
     overflow: hidden;
-    position: relative;
     box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    display: flex;                     /* ← novo */
+    flex-direction: column;            /* ← novo */
     transform: translateY(40px);
     opacity: 0;
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-
 .modal.aberto .modal-content {
     transform: translateY(0);
     opacity: 1;
@@ -431,6 +431,7 @@ nav a.active {
 /* Carrossel no topo do modal */
 .modal-gallery {
     position: relative;
+    flex: 0 0 auto;                    /* ← não cresce */
     height: 380px;
     background: #111;
     overflow: hidden;
@@ -512,7 +513,10 @@ nav a.active {
 
 /* Conteúdo abaixo do carrossel */
 .modal-body {
+    flex: 1 1 auto;                    /* ← ocupa o espaço restante */
+    overflow-y: auto;                  /* ← BARRA DE ROLAGEM AQUI */
     padding: 28px 32px;
+    -webkit-overflow-scrolling: touch;
 }
 
 .modal-info h2 {
@@ -862,10 +866,18 @@ footer{
         text-align: center;
     }
 
-    .modal-gallery { height: 260px; }
-    .modal-body { padding: 24px; }
-    .modal-preco { font-size: 28px; }
-    .specs { gap: 20px; }
+    .modal {
+        padding: 10px;
+    }
+    .modal-content {
+        max-height: 98vh;
+    }
+    .modal-gallery {
+        height: 260px;
+    }
+    .modal-body {
+        padding: 20px;
+    }
 }
 
 @media (max-width: 1200px) {
