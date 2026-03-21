@@ -8,11 +8,17 @@
       "cidadeNome":"Mogi Guaçu",
       "tipo":"casa",
       "quartos":"3 quartos",
+      "banheiros":"2 banheiros",
+      "vagas":"1 vaga",
+      "tamanho":"180m²",
       "preco":650000,
       "badge":"novo",
       "destaque":true,
       "imagens":[
-        "images/imoveis/casa-1.jpg"
+        "images/imoveis/casa-1.jpg",
+        "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=60&auto=format"
       ]
     },
 
@@ -23,10 +29,16 @@
       "cidadeNome":"Campinas",
       "tipo":"apartamento",
       "quartos":"2 quartos",
+      "banheiros":"1 banheiro",
+      "vagas":"1 vaga",
+      "tamanho":"75m²",
       "preco":420000,
       "badge":"oportunidade",
       "imagens":[
-        "images/imoveis/apto.jpg"
+        "images/imoveis/apto.jpg",
+        "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=700&q=60&auto=format"
       ]
     },
 
@@ -37,10 +49,16 @@
       "cidadeNome":"Sorocaba",
       "tipo":"casa",
       "quartos":"4 quartos",
+      "banheiros":"3 banheiros",
+      "vagas":"2 vagas",
+      "tamanho":"250m²",
       "preco":890000,
       "badge":"",
       "imagens":[
-        "images/imoveis/casa-2.jpg"
+        "images/imoveis/casa-2.jpg",
+        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=700&q=60&auto=format"
       ]
     },
 
@@ -51,10 +69,16 @@
       "cidadeNome":"Mogi Guaçu",
       "tipo":"terreno",
       "quartos":"",
+      "banheiros":"",
+      "vagas":"",
+      "tamanho":"300m²",
       "preco":210000,
       "badge":"oportunidade",
       "imagens":[
-        "images/imoveis/terreno.jpg"
+        "images/imoveis/terreno.jpg",
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=700&q=60&auto=format"
       ]
     },
 
@@ -65,10 +89,16 @@
       "cidadeNome":"Mogi Guaçu",
       "tipo":"apartamento",
       "quartos":"3 quartos",
+      "banheiros":"2 banheiros",
+      "vagas":"1 vaga",
+      "tamanho":"95m²",
       "preco":480000,
       "badge":"",
       "imagens":[
-        "images/imoveis/casa-3.jpg"
+        "images/imoveis/casa-3.jpg",
+        "https://images.unsplash.com/photo-1493666438817-866a91353ca9?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=700&q=60&auto=format"
       ]
     },
 
@@ -79,11 +109,17 @@
       "cidadeNome":"Campinas",
       "tipo":"casa",
       "quartos":"4 quartos",
+      "banheiros":"4 banheiros",
+      "vagas":"2 vagas",
+      "tamanho":"280m²",
       "preco":980000,
       "badge":"novo",
       "destaque":true,
       "imagens":[
-        "images/imoveis/casa-4.jpg"
+        "images/imoveis/casa-4.jpg",
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1600585152915-d208bec867a1?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=700&q=60&auto=format"
       ]
     },
 
@@ -94,10 +130,16 @@
       "cidadeNome":"Campinas",
       "tipo":"terreno",
       "quartos":"",
+      "banheiros":"",
+      "vagas":"",
+      "tamanho":"450m²",
       "preco":350000,
       "badge":"",
       "imagens":[
-        "images/imoveis/terreno.jpg"
+        "images/imoveis/terreno.jpg",
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1500534623283-312aade485b7?w=700&q=60&auto=format"
       ]
     },
 
@@ -108,10 +150,16 @@
       "cidadeNome":"Sorocaba",
       "tipo":"apartamento",
       "quartos":"2 quartos",
+      "banheiros":"2 banheiros",
+      "vagas":"1 vaga",
+      "tamanho":"85m²",
       "preco":390000,
       "badge":"",
       "imagens":[
-        "images/imoveis/casa-5.jpg"
+        "images/imoveis/casa-5.jpg",
+        "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1486304873000-235643847519?w=700&q=60&auto=format"
       ]
     },
 
@@ -122,10 +170,16 @@
       "cidadeNome":"Sorocaba",
       "tipo":"casa",
       "quartos":"3 quartos",
+      "banheiros":"2 banheiros",
+      "vagas":"2 vagas",
+      "tamanho":"170m²",
       "preco":620000,
       "badge":"",
       "imagens":[
-        "images/imoveis/casa-6.jpg"
+        "images/imoveis/casa-6.jpg",
+        "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=60&auto=format"
       ]
     },
 
@@ -136,10 +190,16 @@
       "cidadeNome":"Jaguariúna",
       "tipo":"terreno",
       "quartos":"",
+      "banheiros":"",
+      "vagas":"",
+      "tamanho":"600m²",
       "preco":240000,
       "badge":"oportunidade",
       "imagens":[
-        "images/imoveis/casa-7.jpg"
+        "images/imoveis/casa-7.jpg",
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=700&q=60&auto=format"
       ]
     },
 
@@ -150,10 +210,16 @@
       "cidadeNome":"Jaguariúna",
       "tipo":"apartamento",
       "quartos":"2 quartos",
+      "banheiros":"1 banheiro",
+      "vagas":"1 vaga",
+      "tamanho":"70m²",
       "preco":360000,
       "badge":"novo",
       "imagens":[
-        "images/imoveis/apto-2.jpg"
+        "images/imoveis/apto-2.jpg",
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=700&q=60&auto=format"
       ]
     },
 
@@ -164,10 +230,16 @@
       "cidadeNome":"Jaguariúna",
       "tipo":"casa",
       "quartos":"3 quartos",
+      "banheiros":"2 banheiros",
+      "vagas":"2 vagas",
+      "tamanho":"160m²",
       "preco":540000,
       "badge":"",
       "imagens":[
-        "images/imoveis/casa-8.jpg"
+        "images/imoveis/casa-8.jpg",
+        "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=700&q=60&auto=format"
       ]
     },
 
@@ -178,10 +250,16 @@
       "cidadeNome":"Paulínia",
       "tipo":"apartamento",
       "quartos":"3 quartos",
+      "banheiros":"3 banheiros",
+      "vagas":"2 vagas",
+      "tamanho":"140m²",
       "preco":720000,
       "badge":"",
       "imagens":[
-        "images/imoveis/casa-9.jpg"
+        "images/imoveis/casa-9.jpg",
+        "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=700&q=60&auto=format"
       ]
     },
 
@@ -192,11 +270,17 @@
       "cidadeNome":"Paulínia",
       "tipo":"casa",
       "quartos":"4 quartos",
+      "banheiros":"3 banheiros",
+      "vagas":"2 vagas",
+      "tamanho":"260m²",
       "preco":870000,
       "badge":"novo",
       "destaque":true,
       "imagens":[
-        "images/imoveis/casa-10.jpg"
+        "images/imoveis/casa-10.jpg",
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1600585152915-d208bec867a1?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=700&q=60&auto=format"
       ]
     },
 
@@ -207,10 +291,16 @@
       "cidadeNome":"Paulínia",
       "tipo":"terreno",
       "quartos":"",
+      "banheiros":"",
+      "vagas":"",
+      "tamanho":"700m²",
       "preco":310000,
       "badge":"",
       "imagens":[
-        "images/imoveis/casa-11.jpg"
+        "images/imoveis/casa-11.jpg",
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=700&q=60&auto=format",
+        "https://images.unsplash.com/photo-1500534623283-312aade485b7?w=700&q=60&auto=format"
       ]
     }
 
