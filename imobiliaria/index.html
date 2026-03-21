@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prime Imóveis</title>
-    
-    <link rel="stylesheet" href="/imobiliaria/css/style.css?v=2.0">
+
+    <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <meta name="description" content="Imobiliária especializada em casas, apartamentos e terrenos nas melhores cidades da região.">
 
-    <link rel="icon" type="image/png" sizes="32x32" href="/imobiliaria/images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/imobiliaria/images/favicon/favicon-16x16.png">
-    <link rel="icon" href="/imobiliaria/images/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
+    <link rel="icon" href="./images/favicon/favicon.ico">
 </head>
 
 <body>
@@ -62,7 +62,7 @@
 
     <div class="container">
 
-        <h2>Buscar imóveis</h2>
+        <h2>     imóveis</h2>
 
     <div class="busca">
 
@@ -107,7 +107,7 @@
 
 <section id="sobre" class="sobre">
     <div class="container sobre-grid">
-        <img src="/imobiliaria/images/site/sobre.jpg" alt="Foto de casa e chave">
+        <img src="./images/site/sobre.jpg" alt="Foto de casa e chave">
 
         <div>
             <h2>Especialistas em imóveis</h2>
@@ -217,7 +217,67 @@
     <i class="fa-brands fa-whatsapp"></i>
 </a>
 
-<script src="/imobiliaria/js/script.js"></script>
+<script src="js/script.js"></script>
+
+<div id="modalImovel" class="modal">
+    <div class="modal-content">
+
+        <!-- Botão fechar -->
+        <span class="close-modal" aria-label="Fechar modal">&times;</span>
+
+        <!-- Galeria no topo -->
+        <div class="modal-gallery">
+            <div class="slider-wrapper">
+                <div id="slider" class="slider"></div>
+            </div>
+
+            <!-- Botões de navegação (setas circulares) -->
+            <button class="prev" onclick="mudarFoto(-1)" aria-label="Foto anterior">
+                &#10094;
+            </button>
+            <button class="next" onclick="mudarFoto(1)" aria-label="Próxima foto">
+                &#10095;
+            </button>
+
+            <!-- Pontinhos indicadores -->
+            <div class="dots" id="dots"></div>
+        </div>
+
+        <!-- Informações abaixo -->
+        <div class="modal-body">
+            <div class="modal-info">
+                <h2 id="modalTitulo"></h2>
+                <p id="modalCidade" class="modal-cidade"></p>
+
+                <div class="specs">
+                    <div class="spec-item">
+                        <i class="fa-solid fa-bed"></i>
+                        <span id="modalQuartos"></span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fa-solid fa-bath"></i>
+                        <span id="modalBanheiros"></span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fa-solid fa-car"></i>
+                        <span id="modalVagas"></span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fa-solid fa-ruler-combined"></i>
+                        <span id="modalTamanho"></span>
+                    </div>
+                </div>
+
+                <div class="modal-preco" id="modalPreco"></div>
+
+                <a id="btnWhatsModal" href="#" target="_blank" class="btn-whats-modal">
+                    <i class="fa-brands fa-whatsapp"></i> Tenho interesse
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 </body>
 
