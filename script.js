@@ -30,11 +30,33 @@ observer.observe(section)
 
 /* MENU MOBILE */
 
-const hamburger = document.getElementById("hamburger")
-const nav = document.querySelector("nav")
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('nav');
 
-hamburger.addEventListener("click", () => {
+    if (!hamburger || !nav) {
+      console.error('Hamburger ou nav não encontrado no HTML');
+      return;
+    }
 
-nav.classList.toggle("active")
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      nav.classList.toggle('active');
+    });
 
-})
+    // Fecha ao clicar em link
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        nav.classList.remove('active');
+      });
+    });
+
+    // Fecha ao clicar fora (muito útil)
+    document.addEventListener('click', e => {
+      if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+        hamburger.classList.remove('active');
+        nav.classList.remove('active');
+      }
+    });
+  });
