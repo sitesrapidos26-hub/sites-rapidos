@@ -1,146 +1,226 @@
-let todosImoveis=[]
-let imoveisFiltrados=[]
-let exibidos=0
+let todosImoveis = [];
+let imoveisFiltrados = [];
+let exibidos = 0;
+const inicial = 3;
+const incremento = 6;
 
-const inicial=3
-const incremento=6
+let fotoAtual = 0;
+let fotosImovel = [];
 
-fetch('/imobiliaria/data/imoveis.json') // Caminho do JSON corrigido
-  .then(response => response.json())
-  .then(data => {
-    todosImoveis = data.imoveis
-    carregarDestaques()
-    imoveisFiltrados = [...todosImoveis]
-    mostrarMais()
-})
-
-function carregarDestaques(){
-
-    const destaque=todosImoveis.filter(i=>i.destaque).slice(0,3)
-
-    const container=document.getElementById("lista-destaque")
-
-    container.innerHTML=""
-
-    destaque.forEach(i=>{
-        container.innerHTML+=criarCard(i)
+// ─────────────── CARREGAMENTO INICIAL ───────────────
+fetch("./data/imoveis.json")
+    .then(res => res.json())
+    .then(data => {
+        todosImoveis = data.imoveis || [];
+        carregarDestaques();
+        imoveisFiltrados = [...todosImoveis];
+        mostrarMais();
     })
+    .catch(err => console.error("Erro ao carregar imóveis:", err));
 
+// ─────────────── DESTAQUES ───────────────
+function carregarDestaques() {
+    const container = document.getElementById("lista-destaque");
+    if (!container) return;
+
+    const destaques = todosImoveis.filter(i => i.destaque).slice(0, 3);
+    container.innerHTML = destaques.map(criarCard).join("");
 }
 
-function buscar(){
+// ─────────────── BUSCA ───────────────
+function buscar() {
+    const cidade = document.getElementById("cidade")?.value?.trim() || "";
+    const tipo   = document.getElementById("tipo")?.value?.trim()   || "";
+    const precoMax = Number(document.getElementById("precoMax")?.value) || 0;
 
-    const cidade=document.getElementById("cidade").value
-    const tipo=document.getElementById("tipo").value
-    const preco=parseInt(document.getElementById("precoMax").value)
+    imoveisFiltrados = todosImoveis.filter(i => {
+        return (!cidade || i.cidade === cidade) &&
+               (!tipo   || i.tipo   === tipo)   &&
+               (!precoMax || i.preco <= precoMax);
+    });
 
-    imoveisFiltrados=todosImoveis.filter(i=>{
-
-        return (!cidade || i.cidade===cidade) &&
-               (!tipo || i.tipo===tipo) &&
-               (!preco || i.preco<=preco)
-
-    })
-
-    exibidos=0
-
-    document.getElementById("lista-imoveis").innerHTML=""
-
-    mostrarMais()
-
+    exibidos = 0;
+    const lista = document.getElementById("lista-imoveis");
+    if (lista) lista.innerHTML = "";
+    mostrarMais();
 }
 
-function mostrarMais(){
+// ─────────────── PAGINAÇÃO ───────────────
+function mostrarMais() {
+    const lista = document.getElementById("lista-imoveis");
+    const btnMais = document.getElementById("btnMais");
+    if (!lista || !btnMais) return;
 
-    const lista=document.getElementById("lista-imoveis")
-    const btn=document.getElementById("btnMais")
+    const qtd = exibidos === 0 ? inicial : incremento;
+    const novos = imoveisFiltrados.slice(exibidos, exibidos + qtd);
 
-    const qtd=exibidos===0 ? inicial : incremento
+    lista.innerHTML += novos.map(criarCard).join("");
+    exibidos += qtd;
 
-    const novos=imoveisFiltrados.slice(exibidos,exibidos+qtd)
-
-    let html = ""
-
-    novos.forEach(i=>{
-        html += criarCard(i)
-    })
-
-    lista.innerHTML += html
-
-    exibidos+=qtd
-
-    if(exibidos>=imoveisFiltrados.length){
-
-        btn.style.display="none"
-
-    }else{
-
-        btn.style.display="inline-block"
-
-    }
-
+    btnMais.style.display = exibidos >= imoveisFiltrados.length ? "none" : "inline-block";
 }
 
-window.addEventListener("DOMContentLoaded",()=>{
-    document.getElementById("btnMais").addEventListener("click",mostrarMais)
-})
-
+// ─────────────── CRIAÇÃO DE CARD NA LISTA ───────────────
 function criarCard(i) {
-    const imgOriginal = i.imagens[0];
-    const img = imgOriginal.startsWith('/imobiliaria/') ? imgOriginal : `/imobiliaria/${imgOriginal}`;
-
-    const badge = i.badge ? `<span class="badge ${i.badge}">${i.badge}</span>` : ""
-    const msg = `https://wa.me/5199999999999?text=${encodeURIComponent("Olá, tenho interesse no imóvel " + i.titulo)}`
+    const img = i.imagens?.[0] || "";
+    const badge = i.badge ? `<span class="badge ${i.badge}">${i.badge}</span>` : "";
 
     return `
-    <div class="card">
+    <div class="card" onclick="abrirModal(${i.id})">
         ${badge}
-        <img src="${img}" alt="${i.titulo}">
+        <img src="${img}" alt="${i.titulo || 'Imóvel à venda'}">
         <div class="card-info">
-            <h3>${i.titulo}</h3>
-            <p>${i.cidadeNome} • ${i.quartos}</p>
-            <span class="preco">R$ ${i.preco.toLocaleString()}</span>
-            <a href="${msg}" target="_blank" class="btn-card">
-                Falar no WhatsApp
-            </a>
+            <h3>${i.titulo || 'Sem título'}</h3>
+            <p>${i.cidadeNome || '—'} • ${i.quartos || '—'}</p>
+            <span class="preco">R$ ${Number(i.preco || 0).toLocaleString('pt-BR')}</span>
+            <span class="btn-card">Ver Detalhes</span>
         </div>
     </div>
-    `
+    `;
 }
 
-const sections = document.querySelectorAll("section")
-const navLinks = document.querySelectorAll("nav a")
+// ─────────────── ABRIR MODAL ───────────────
+function abrirModal(id) {
+    const imovel = todosImoveis.find(i => i.id === id);
+    if (!imovel) return;
 
+    // Preenche textos
+    const tituloEl    = document.getElementById("modalTitulo");
+    const cidadeEl    = document.getElementById("modalCidade");
+    const quartosEl   = document.getElementById("modalQuartos");
+    const banheirosEl = document.getElementById("modalBanheiros");
+    const vagasEl     = document.getElementById("modalVagas");
+    const tamanhoEl   = document.getElementById("modalTamanho");
+    const precoEl     = document.getElementById("modalPreco");
+
+    if (tituloEl)    tituloEl.textContent    = imovel.titulo || "Imóvel sem título";
+    if (cidadeEl)    cidadeEl.textContent    = imovel.cidadeNome || "—";
+    if (quartosEl)   quartosEl.textContent   = imovel.quartos || "—";
+    if (banheirosEl) banheirosEl.textContent = imovel.banheiros || "—";
+    if (vagasEl)     vagasEl.textContent     = imovel.vagas || "—";
+    if (tamanhoEl)   tamanhoEl.textContent   = imovel.tamanho || "—";
+    if (precoEl)     precoEl.textContent     = `R$ ${Number(imovel.preco || 0).toLocaleString('pt-BR')}`;
+
+    // Link WhatsApp
+    const mensagem = `Olá! Tenho interesse no imóvel:\n${imovel.titulo || ''}\n${imovel.cidadeNome || ''}\nR$ ${Number(imovel.preco || 0).toLocaleString('pt-BR')}\n\nGostaria de mais informações!`;
+    const link = `https://wa.me/5511999999999?text=${encodeURIComponent(mensagem)}`;
+    const btnWhats = document.getElementById("btnWhatsModal");
+    if (btnWhats) btnWhats.href = link;
+
+    // Galeria de fotos
+    fotosImovel = imovel.imagens || [];
+    fotoAtual = 0;
+
+    const slider = document.getElementById("slider");
+    const dotsContainer = document.getElementById("dots");
+
+    if (slider) {
+        slider.innerHTML = fotosImovel
+            .map((src, idx) => `<img src="${src}" alt="Foto ${idx + 1} - ${imovel.titulo || 'Imóvel'}">`)
+            .join("");
+    }
+
+    if (dotsContainer) {
+        dotsContainer.innerHTML = fotosImovel
+            .map((_, i) => `
+                <div class="dot ${i === 0 ? 'active' : ''}" 
+                     onclick="irParaFoto(${i})"
+                     aria-label="Ir para foto ${i + 1}"></div>
+            `)
+            .join("");
+    }
+
+    // Abre o modal com animação
+    const modal = document.getElementById("modalImovel");
+    if (modal) {
+        modal.classList.remove("fechando");
+        modal.classList.add("aberto");
+        document.body.style.overflow = "hidden";
+    }
+}
+
+// ─────────────── NAVEGAÇÃO NO CARROSSEL ───────────────
+function mudarFoto(dir) {
+    if (fotosImovel.length <= 1) return;
+
+    fotoAtual = (fotoAtual + dir + fotosImovel.length) % fotosImovel.length;
+    atualizarSlider();
+}
+
+function irParaFoto(index) {
+    if (index < 0 || index >= fotosImovel.length) return;
+    fotoAtual = index;
+    atualizarSlider();
+}
+
+function atualizarSlider() {
+    const slider = document.getElementById("slider");
+    if (slider) {
+        slider.style.transform = `translateX(-${fotoAtual * 100}%)`;
+    }
+
+    // Atualiza os dots
+    document.querySelectorAll(".dot").forEach((dot, i) => {
+        dot.classList.toggle("active", i === fotoAtual);
+    });
+}
+
+// ─────────────── FECHAR MODAL ───────────────
+function fecharModal() {
+    const modal = document.getElementById("modalImovel");
+    if (!modal) return;
+
+    modal.classList.add("fechando");
+    setTimeout(() => {
+        modal.classList.remove("aberto", "fechando");
+        document.body.style.overflow = "";
+    }, 450);
+}
+
+// ─────────────── EVENT LISTENERS ───────────────
+document.addEventListener("DOMContentLoaded", () => {
+    // Botão "Mostrar mais"
+    const btnMais = document.getElementById("btnMais");
+    if (btnMais) btnMais.addEventListener("click", mostrarMais);
+
+    // Fechar modal clicando fora ou no X
+    window.addEventListener("click", e => {
+        const modal = document.getElementById("modalImovel");
+        const closeBtn = document.querySelector(".close-modal");
+        if (modal && (e.target === modal || e.target === closeBtn || closeBtn?.contains(e.target))) {
+            fecharModal();
+        }
+    });
+
+    // Fechar com tecla ESC
+    window.addEventListener("keydown", e => {
+        if (e.key === "Escape") fecharModal();
+    });
+});
+
+// ─────────────── MENU MOBILE ───────────────
+const menuToggle = document.querySelector(".menu-toggle");
+const nav = document.querySelector("nav");
+if (menuToggle && nav) {
+    menuToggle.addEventListener("click", () => {
+        nav.classList.toggle("active");
+    });
+}
+
+// ─────────────── MENU ATIVO AO SCROLL ───────────────
 window.addEventListener("scroll", () => {
+    const sections = document.querySelectorAll("section");
+    const links = document.querySelectorAll("nav a");
+    let current = "";
 
-    let current = ""
-
-    sections.forEach(section => {
-
-        const sectionTop = section.offsetTop - 150
-        const sectionHeight = section.offsetHeight
-
-        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-            current = section.getAttribute("id")
+    sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        if (scrollY >= top && scrollY < top + sec.offsetHeight) {
+            current = sec.getAttribute("id") || "";
         }
+    });
 
-    })
-
-    navLinks.forEach(link => {
-
-        link.classList.remove("active")
-
-        if (link.getAttribute("href") === "#" + current) {
-            link.classList.add("active")
-        }
-
-    })
-
-})
-
-const menuToggle = document.querySelector(".menu-toggle")
-const nav = document.querySelector("nav")
-
-menuToggle.addEventListener("click", () => {
-    nav.classList.toggle("active")
-})
+    links.forEach(link => {
+        link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
+    });
+});
