@@ -650,31 +650,6 @@ textarea {
   transform:translateY(0);
 }
 
-Para adaptar o seu CTA ao estilo visual do site, vamos utilizar a paleta de cores luxuosa (Gold, Primary e Bg-Soft) e a tipografia refinada (Playfair Display para títulos e Inter para o corpo).
-
-Aqui está o código atualizado, moderno e responsivo:
-
-1. HTML (Estrutura Recomendada)
-Substitua o bloco antigo por este, que utiliza as classes de botão que você já tem no CSS:
-
-HTML
-<section class="cta-template">
-    <div class="container">
-        <div class="cta-content fade-up">
-            <h2>Pronto para transformar seu visual?</h2>
-            <p>Agende um horário com nossos especialistas e experimente o padrão de excelência que você merece.</p>
-            <div class="cta-actions">
-                <a href="#" class="btn primary">
-                    <i class="fab fa-whatsapp"></i> Agendar via WhatsApp
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-2. CSS Adaptado
-Adicione este bloco ao seu arquivo CSS. Ele utiliza as variáveis :root que você já definiu (como --gold, --primary e --shadow):
-
-CSS
 /* ─── CTA Template ─── */
 .cta-template {
     padding: 100px 0;
