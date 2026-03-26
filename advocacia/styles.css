@@ -184,12 +184,21 @@ h1,h2,h3 {
   transition: all 0.2s ease-out;
   position: relative;
   overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle; /* Remove o alinhamento pela baseline do texto */
+  
+  /* Garante que a sombra não seja cortada ao subir */
+  backface-visibility: hidden; 
+  transform: translateY(0);
+  will-change: transform;
 }
 
 .btn:hover {
+  transform: translateY(-5px) scale(1.02);
   filter: brightness(1.1);
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 10px 20px rgba(201, 164, 95, 0.3);
+  box-shadow: 0 15px 30px rgba(201, 164, 95, 0.3);
 }
 
 .btn:active {
@@ -692,6 +701,15 @@ textarea {
     font-size: 1.1rem;
     margin-bottom: 2.5rem;
     line-height: 1.6;
+}
+
+.hero-buttons, .cta-actions {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px 0; /* Dá um respiro para o botão subir sem sair da área visível */
+  overflow: visible !important; /* CRITICAL: Permite que o botão "saia" para cima */
 }
 
 .cta-actions {
