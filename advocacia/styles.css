@@ -659,26 +659,14 @@ textarea {
   transform:translateY(0);
 }
 
-/* ─── CTA Template ─── */
+/* ─── CTA Template Ajustado ─── */
 .cta-template {
     padding: 100px 0;
-    background: var(--bg-soft); /* Tom levemente off-white do seu site */
+    background: var(--bg-soft);
     position: relative;
-    overflow: hidden;
+    overflow: visible; /* Alterado para permitir que o hover do botão não corte */
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-}
-
-/* Detalhe decorativo sutil (opcional) */
-.cta-template::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 2px;
-    background: var(--gold);
 }
 
 .cta-content {
@@ -687,20 +675,19 @@ textarea {
     text-align: center;
 }
 
-.cta-template h2 {
-    font-family: 'Playfair Display', serif; /* Mantendo a elegância do site */
-    font-size: clamp(2rem, 5vw, 2.8rem);
-    color: var(--primary);
-    margin-bottom: 1.2rem;
-    line-height: 1.2;
+.cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 20px 0;
 }
 
-.cta-template p {
-    font-family: 'Inter', sans-serif;
-    color: var(--muted);
-    font-size: 1.1rem;
-    margin-bottom: 2.5rem;
-    line-height: 1.6;
+/* Reutilizando a classe .btn primary que você já definiu para manter consistência */
+.cta-template .btn.primary {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.05rem;
+    box-shadow: 0 10px 25px rgba(201, 164, 95, 0.2);
+    text-decoration: none; /* Garante que não haja sublinhado */
 }
 
 .hero-buttons, .cta-actions {
