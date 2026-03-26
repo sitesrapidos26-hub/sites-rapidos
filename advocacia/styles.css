@@ -659,37 +659,6 @@ textarea {
   transform:translateY(0);
 }
 
-/* ─── CTA Template Ajustado ─── */
-.cta-template {
-    padding: 100px 0;
-    background: var(--bg-soft);
-    position: relative;
-    overflow: visible; /* Alterado para permitir que o hover do botão não corte */
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-}
-
-.cta-content {
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.cta-actions {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    padding: 20px 0;
-}
-
-/* Reutilizando a classe .btn primary que você já definiu para manter consistência */
-.cta-template .btn.primary {
-    padding: 1.2rem 2.5rem;
-    font-size: 1.05rem;
-    box-shadow: 0 10px 25px rgba(201, 164, 95, 0.2);
-    text-decoration: none; /* Garante que não haja sublinhado */
-}
-
 .hero-buttons, .cta-actions {
   display: flex;
   gap: 1.2rem;
@@ -703,13 +672,6 @@ textarea {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
-}
-
-/* Ajuste específico para o botão dentro do CTA */
-.cta-template .btn.primary {
-    padding: 1.2rem 2.5rem;
-    font-size: 1.05rem;
-    box-shadow: 0 10px 25px rgba(201, 164, 95, 0.2);
 }
 
 /* Responsividade */
