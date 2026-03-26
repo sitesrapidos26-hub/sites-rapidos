@@ -650,6 +650,88 @@ textarea {
   transform:translateY(0);
 }
 
+Para adaptar o seu CTA ao estilo visual do site, vamos utilizar a paleta de cores luxuosa (Gold, Primary e Bg-Soft) e a tipografia refinada (Playfair Display para títulos e Inter para o corpo).
+
+Aqui está o código atualizado, moderno e responsivo:
+
+1. HTML (Estrutura Recomendada)
+Substitua o bloco antigo por este, que utiliza as classes de botão que você já tem no CSS:
+
+HTML
+<section class="cta-template">
+    <div class="container">
+        <div class="cta-content fade-up">
+            <h2>Pronto para transformar seu visual?</h2>
+            <p>Agende um horário com nossos especialistas e experimente o padrão de excelência que você merece.</p>
+            <div class="cta-actions">
+                <a href="#" class="btn primary">
+                    <i class="fab fa-whatsapp"></i> Agendar via WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+2. CSS Adaptado
+Adicione este bloco ao seu arquivo CSS. Ele utiliza as variáveis :root que você já definiu (como --gold, --primary e --shadow):
+
+CSS
+/* ─── CTA Template ─── */
+.cta-template {
+    padding: 100px 0;
+    background: var(--bg-soft); /* Tom levemente off-white do seu site */
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+/* Detalhe decorativo sutil (opcional) */
+.cta-template::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 2px;
+    background: var(--gold);
+}
+
+.cta-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cta-template h2 {
+    font-family: 'Playfair Display', serif; /* Mantendo a elegância do site */
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    color: var(--primary);
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
+}
+
+.cta-template p {
+    font-family: 'Inter', sans-serif;
+    color: var(--muted);
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+.cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+/* Ajuste específico para o botão dentro do CTA */
+.cta-template .btn.primary {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.05rem;
+    box-shadow: 0 10px 25px rgba(201, 164, 95, 0.2);
+}
+
 /* Responsividade */
 @media (max-width: 960px) {
   .contact-grid {
@@ -706,5 +788,14 @@ textarea {
   .hero-buttons {
     flex-direction:column;
     gap:1rem;
+  }
+
+  .cta-template {
+      padding: 80px 20px;
+  }
+    
+  .cta-template .btn.primary {
+      width: 100%; /* Botão ocupa largura total no mobile */
+      justify-content: center;
   }
 }
