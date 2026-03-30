@@ -850,6 +850,68 @@ footer {
     text-decoration: underline; 
 }
 
+/* CTA TEMPLATE */
+
+.cta-template {
+    text-align: center;
+    padding: 90px 20px;
+    background: linear-gradient(180deg, #0a0a0a, #111);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glow sutil no fundo */
+.cta-template::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(243, 156, 18, 0.15), transparent 70%);
+    z-index: 0;
+}
+
+/* Conteúdo acima do efeito */
+.cta-template * {
+    position: relative;
+    z-index: 1;
+}
+
+.cta-template h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 42px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.cta-template p {
+    color: var(--gray);
+    margin-bottom: 30px;
+    font-size: 1.05rem;
+}
+
+/* Botão (já que existe no HTML) */
+.cta-template .btn-site {
+    display: inline-block;
+    padding: 14px 30px;
+    border-radius: 50px;
+    background: var(--primary);
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+    box-shadow: 0 10px 30px rgba(243, 156, 18, 0.25);
+}
+
+.cta-template .btn-site:hover {
+    background: var(--primary-hover);
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 18px 40px rgba(243, 156, 18, 0.4);
+}
+
 /* RESPONSIVIDADE */
 
 @media (max-width: 640px) {
