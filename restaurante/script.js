@@ -246,30 +246,66 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: true });
 
-    // === BARRA SOME ANTES DE FEEDBACK E CONTATO ===
-    const categoryNav = document.querySelector('.category-nav');
-    const hideSections = document.querySelectorAll('#reviews, #contact');
+    // === BARRA VISÍVEL APENAS NO CARDÁPIO ===
+const categoryNav = document.querySelector('.category-nav');
+const firstSection = document.querySelector('#burger');
+const lastSection = document.querySelector('#dessert');
 
-    if (categoryNav && hideSections.length > 0) {
-        const hideObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    categoryNav.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                    categoryNav.style.opacity = '0';
-                    categoryNav.style.transform = 'translateY(-30px)';
-                    categoryNav.style.pointerEvents = 'none';
-                } else {
-                    categoryNav.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-                    categoryNav.style.opacity = '1';
-                    categoryNav.style.transform = 'translateY(0)';
-                    categoryNav.style.pointerEvents = 'auto';
-                }
-            });
-        }, { 
-            threshold: 0.15,
-            rootMargin: "0px 0px -110px 0px"   // some mais cedo
-        });
+if (categoryNav && firstSection && lastSection) {
 
-        hideSections.forEach(section => hideObserver.observe(section));
+    function controlCategoryNav() {
+        const firstRect = firstSection.getBoundingClientRect();
+        const lastRect = lastSection.getBoundingClientRect();
+
+        const offset = 150;
+
+        const isBelowFirst = firstRect.top <= offset;
+        const isAboveLast = lastRect.bottom >= offset;
+
+        const isInsideMenu = isBelowFirst && isAboveLast;
+
+        if (isInsideMenu) {
+            // MOSTRA
+            categoryNav.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+            categoryNav.style.opacity = '1';
+            categoryNav.style.transform = 'translateY(0)';
+            categoryNav.style.pointerEvents = 'auto';
+        } else {
+            // ESCONDE
+            categoryNav.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            categoryNav.style.opacity = '0';
+            categoryNav.style.transform = 'translateY(-30px)';
+            categoryNav.style.pointerEvents = 'none';
+        }
     }
+
+    window.addEventListener('scroll', controlCategoryNav, { passive: true });
+    controlCategoryNav();
+}
+
+    // HAMBURGUER MENU
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+    }
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+    });
+
+    document.addEventListener('click', (e) => {
+    if (
+        mobileMenu.classList.contains('active') &&
+        !mobileMenu.contains(e.target) &&
+        !hamburger.contains(e.target)
+    ) {
+        mobileMenu.classList.remove('active');
+    }
+    });
+});
 });
