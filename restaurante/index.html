@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodExpress | Cardápio Digital</title>
+    <link rel="stylesheet" href="restaurante/style.css">
+    <script defer src="restaurante/'script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="restaurante/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="restaurante/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="restaurante/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="restaurante/images/favicon/site.webmanifest">
+    <link rel="icon" href="restaurante/images/favicon/favicon.ico">
+</head>
+<body>
+
+<header>
+    <div class="nav container">
+        <h1 class="logo">Food<span>Express</span></h1>
+        
+        <!-- Desktop Navigation -->
+        <nav class="nav-links desktop">
+            <a href="#about">Sobre</a>
+            <a href="#menu">Cardápio</a>
+            <a href="#reviews">Avaliações</a>
+            <a href="#contact">Contato</a>
+        </nav>
+
+        <button class="cart-btn" onclick="toggleCart()">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cartCount">0</span>
+        </button>
+
+        <!-- Botão Hambúrguer -->
+        <button class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu" id="mobileMenu">
+        <a href="#about" class="mobile-link">Sobre</a>
+        <a href="#menu" class="mobile-link">Cardápio</a>
+        <a href="#reviews" class="mobile-link">Avaliações</a>
+        <a href="#contact" class="mobile-link">Contato</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <span class="badge-hero">🔥 O melhor da cidade</span>
+        <h2>Explosão de sabor em cada mordida</h2>
+        <p>Hambúrgueres artesanais com ingredientes selecionados e entrega rápida.</p>
+        <div class="hero-buttons">
+            <a href="#menu" class="btn primary">Ver Cardápio</a>
+            <a href="#" class="btn ifood">iFood</a>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="about">
+    <div class="container about-grid">
+        <div class="about-content">
+            <span class="subtitle">Nossa História</span>
+            <h2>Paixão por Hambúrguer</h2>
+            <p>Nossa jornada começou com um objetivo simples: criar o hambúrguer perfeito. Usamos carne 100% bovina, pães artesanais assados diariamente e molhos secretos que você só encontra aqui.</p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <strong>+10k</strong>
+                    <p>Clientes Felizes</p>
+                </div>
+                <div class="stat-item">
+                    <strong>4.9</strong>
+                    <p>Estrelas no Google</p>
+                </div>
+            </div>
+        </div>
+        <div class="about-image">
+            <img src="https://images.pexels.com/photos/4947388/pexels-photo-4947388.jpeg" alt="Nossa Cozinha">
+        </div>
+    </div>
+</section>
+
+<div id="menu" class="category-nav">
+    <div class="container nav-scroll">
+        <a href="#burger" class="cat-link active">Burgers</a>
+        <a href="#side" class="cat-link">Porções</a>
+        <a href="#drink" class="cat-link">Bebidas</a>
+        <a href="#dessert" class="cat-link">Sobremesas</a>
+    </div>
+</div>
+
+<main class="container">
+    <section id="burger" class="menu-section">
+        <h3>🍔 Burgers Artesanais</h3>
+        <div class="menu-grid" id="grid-burger"></div>
+    </section>
+
+    <section id="side" class="menu-section">
+        <h3>🍟 Para Acompanhar</h3>
+        <div class="menu-grid" id="grid-side"></div>
+    </section>
+
+    <section id="drink" class="menu-section">
+        <h3>🥤 Bebidas Geladas</h3>
+        <div class="menu-grid" id="grid-drink"></div>
+    </section>
+
+    <section id="dessert" class="menu-section">
+        <h3>🍦 Sobremesas</h3>
+        <div class="menu-grid" id="grid-dessert"></div>
+    </section>
+</main>
+
+<div id="productModal" class="modal" onclick="closeModalOnOut(event)">
+    <div class="modal-content" id="modalBody"></div>
+</div>
+
+<section id="reviews" class="reviews container">
+    <div class="section-header">
+        <span class="subtitle">Feedback</span>
+        <h2>O que dizem nossos clientes</h2>
+    </div>
+    
+    <div class="reviews-grid">
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>"Melhor burger que já comi! A entrega foi super rápida e chegou quentinho."</p>
+            <span class="author">- João Silva</span>
+        </div>
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>"O combo duplo é gigante, vale muito a pena pelo preço e qualidade."</p>
+            <span class="author">- Maria Oliveira</span>
+        </div>
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>"Atendimento via WhatsApp nota 10. Recomendo muito!"</p>
+            <span class="author">- Pedro Santos</span>
+        </div>
+    </div>
+</section>
+
+<div id="cartSidebar" class="cart-sidebar">
+    <div class="cart-header">
+        <h3>Seu Pedido</h3>
+        <button class="close-cart" onclick="toggleCart()">&times;</button>
+    </div>
+    <div id="cartItems" class="cart-body">
+        </div>
+    <div class="cart-footer">
+        <div class="total-row">
+            <span>Total:</span>
+            <span>R$ <span id="total">0,00</span></span>
+        </div>
+        <button class="btn-checkout" onclick="sendWhats()">Finalizar no WhatsApp</button>
+    </div>
+</div>
+
+<!-- SEÇÃO DE CONTATO + MAPA -->
+<section id="contact" class="contact">
+    <div class="container">
+        <div class="section-header">
+            <span class="subtitle">Venha nos visitar</span>
+            <h2>Onde Estamos</h2>
+        </div>
+
+        <div class="contact-grid">
+            <!-- Mapa -->
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.0!2d-46.9425!3d-22.3675!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce0f7c6f5e7eab%3A0x4b5b4f9b6f9a0f2b!2sPra%C3%A7a%20C%C3%A2ndido%20Rondon%2C%20Centro%2C%20Mogi%20Gua%C3%A7u%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1710000000000"
+                    width="100%" 
+                    height="100%" 
+                    style="border:0; border-radius: 20px;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+
+            <!-- Informações de Contato -->
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h3>📍 Endereço</h3>
+                    <p>Rua dos Sabores, 123 - Centro<br>Sua Cidade - SP, 12345-678</p>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://wa.me/5541996092712" target="_blank" class="social-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                    <a href="https://instagram.com/foodexpress" target="_blank" class="social-btn instagram">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://facebook.com/foodexpress" target="_blank" class="social-btn facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="mailto:contato@foodexpress.com" class="social-btn email">
+                        <i class="fas fa-envelope"></i>
+                        <span>E-mail</span>
+                    </a>
+                </div>
+
+                <div class="contact-card">
+                    <h3>🕒 Horário de Funcionamento</h3>
+                    <p>Aberto todos os dias<br><strong>18h às 23h</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+<a class="whatsapp-float" onclick="sendWhats()">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<footer>
+    <div class="container footer-content">
+        <div class="footer-info">
+            <h4>FoodExpress</h4>
+            <p>Aberto todos os dias: 18h às 23h</p>
+            <p>Rua dos Sabores, 123 - Centro</p>
+        </div>
+        <div class="credits">
+            <p>Criado por <a href="https://sites-rapidos.com" target="_blank">Sites Rápidos</a></p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
