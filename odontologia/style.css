@@ -7,6 +7,7 @@
     --light: #f8fafc;
     --gray: #f1f5f9;
     --accent: #0f766e;
+    --nav-height: 80px;
 }
 
 * {
@@ -17,7 +18,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding: 50px;
+    scroll-padding-top: var(--nav-height);
 }
 
 body {
@@ -25,6 +26,12 @@ body {
     line-height: 1.6;
     color: var(--dark);
     background: #fff;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden; /* Mata a barra de rolagem lateral */
+    scroll-behavior: smooth;
 }
 
 /* ====================== TYPOGRAPHY (ALTERADO) ====================== */
@@ -54,24 +61,29 @@ h2 {
 .navbar {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(12px);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 1000;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border-bottom: 1px solid #f1f1f1;
-}
-
-.navbar.scrolled {
-    background: #fff;
-    box-shadow: 0 10px 30px -10px rgba(20, 184, 166, 0.2);
+    transition: all 0.4s ease;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .nav-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 18px 0;
+    padding: 15px 30px; /* Aumentado de 20px para 30px para dar respiro lateral */
+    max-width: 1200px;  /* Garante que em telas gigantes o menu não fuja para os cantos */
+    margin: 0 auto;     /* Centraliza o conteúdo da nav */
 }
+
+.navbar.scrolled {
+    padding: 5px 0;
+    box-shadow: 0 10px 30px -10px rgba(20, 184, 166, 0.15);
+}
+
 
 .brand {
     display: flex;
@@ -139,29 +151,52 @@ h2 {
     display: none;
     background: none;
     border: none;
-    font-size: 1.75rem;
-    color: var(--dark);
+    font-size: 1.8rem;
+    color: var(--primary); /* Cor de destaque no hambúrguer */
     cursor: pointer;
+    z-index: 1001;
+    transition: transform 0.3s ease;
 }
 
 /* Mobile Menu */
 .mobile-menu {
-    display: none;
+    display: flex; /* Mantemos flex, mas controlamos com opacidade e visibilidade */
     flex-direction: column;
-    background: white;
-    padding: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    top: 100%;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(15px);
+    position: fixed; /* Fixado para cobrir a tela */
+    top: 0;
     left: 0;
     right: 0;
-    gap: 16px;
-    font-size: 1.1rem;
+    height: 100vh;
+    gap: 25px;
+    z-index: 1000;
+    
+    /* Animação Suave */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 .mobile-menu a {
+    font-size: 1.5rem;
+    font-weight: 600;
     color: var(--dark);
     text-decoration: none;
+    transition: color 0.3s;
+}
+
+.mobile-menu a:hover {
+    color: var(--primary);
 }
 
 /* ====================== HERO ====================== */
@@ -174,6 +209,7 @@ h2 {
     color: white;
     position: relative;
     overflow: hidden;
+    padding-top: var(--nav-height)
 }
 
 .hero-content {
@@ -256,7 +292,7 @@ h2 {
 /* Scroll indicator */
 .scroll-indicator {
     position: absolute;
-    bottom: 40px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     animation: bounce 2s infinite;
@@ -511,11 +547,20 @@ h2 {
     font-size: 1.1rem;
 }
 
+.team-card {
+    background: white;
+    border-radius: 24px;
+    padding: 20px; /* Reduzi levemente o padding para a imagem brilhar */
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: left;
+}
+
 .team-card img {
     width: 100%;
     height: 270px; 
     object-fit: cover;
-    object-position: top; 
+    object-position: center 20%; 
     
     border-radius: 18px;
     margin-bottom: 20px;
@@ -938,55 +983,211 @@ footer a:hover{
 }
 
 /* ====================== RESPONSIVIDADE ====================== */
-@media (max-width: 992px) {
-    .grid-2,
-    .grid-3,
-    .grid-4 {
+/* Telas Médias (Tablets) */
+@media (max-width: 1024px) {
+    .about-grid, .contact-wrapper {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 50px;
     }
     
-    .menu {
-        display: none;
+    .about-image {
+        max-width: 700px;
+        margin: 0 auto;
     }
     
-    .menu-btn {
-        display: block;
-    }
-    
-    .hero-title {
-        font-size: 3rem;
-    }
-    
-    .section {
-        padding: 80px 0;
-    }
-
-    .contact-wrapper {
-        gap: 60px;
-    }
     .contact-info {
-        padding-right: 0;
+        text-align: center;
+        padding: 0;
     }
-    .contact-form {
-        padding: 40px 30px;
+    
+    .info-list {
+        align-items: center;
     }
 }
 
-@media (max-width: 576px) {
-    .hero-cta {
-        flex-direction: column;
+/* Telas Pequenas (Mobile) */
+@media (max-width: 768px) {
+
+    .menu, .nav-cta { 
+        display: none !important; /* Remove menu desktop e botão whats da nav */
     }
     
-    h2 {
-        font-size: 2.3rem;
+    .menu-btn { 
+        display: block; 
+    }
+
+    .nav-content {
+        padding: 12px 0;
+    }
+
+    /* Correção de Grid que quebra o layout */
+    .about-grid, .contact-wrapper, .grid-2 {
+        grid-template-columns: 1fr !important;
+        width: 100%;
+        gap: 40px;
+    }
+
+    /* Impede que imagens ou cards estiquem a tela */
+    .premium-image, .contact-form, .card {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .menu { display: none; }
+    
+    .menu-btn { display: block; }
+    
+    .nav-cta { display: none; }
+    
+    .hero {
+        text-align: center;
+        padding: 80px 0;
+    }
+    
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .hero-cta a {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .hero-trust {
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .menu, .nav-cta { display: none !important; }
+    .menu-btn { display: block; }
+
+    /* Ajuste de Seções */
+    .section { padding: 60px 0; }
+    
+    /* Contato no Mobile - Centralizado e Espaçado */
+    .contact-wrapper {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 50px;
+    }
+
+    .info-list {
+        align-items: center;
+        width: 100%;
+    }
+
+    .info-item {
+        flex-direction: column; /* Ícone em cima do texto no mobile */
+        gap: 12px;
+        width: 100%;
     }
 
     .contact-title {
-        font-size: 2.4rem;
+        font-size: 2.2rem;
+        margin-bottom: 15px;
     }
+
+    .contact-subtitle {
+        margin: 0 auto 40px auto;
+    }
+
+    /* Redes Sociais Centralizadas */
     .socials-premium {
         justify-content: center;
+        margin-top: 40px;
+    }
+
+    /* Cards da Equipe no Mobile */
+    .grid-3 {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .team-card img {
+        height: 240px; /* Altura ideal para mobile */
+    }
+
+    .nav-content {
+        padding: 12px 20px; /* Espaço confortável para o ícone e o hambúrguer no celular */
+    }
+
+    .brand {
+        gap: 10px; /* Espaço entre o ícone do dente e o texto OdontoAura */
+    }
+
+    .logo {
+        width: 40px;  /* Ajuste leve para não dominar a barra no mobile */
+        height: 40px;
+        font-size: 1.4rem;
+    }
+
+    .menu-btn {
+        padding: 8px; /* Área de clique maior e mais afastada da borda */
+        margin-right: -5px; /* Alinhamento óptico */
+    }
+}
+
+/* Celulares muito pequenos */
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .image-badge {
+        display: none;
+    }
+    
+    .section {
+        padding: 60px 0;
+    }
+    
+    .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 1.8rem;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+    
+    .contact-form {
+        padding: 30px 20px;
+    }
+
+    /* Ajuste para o contato não quebrar */
+    .info-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
     }
 }
 
