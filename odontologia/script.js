@@ -4,14 +4,11 @@ function toggleMobileMenu() {
     const menuBtnIcon = document.querySelector('.menu-btn i');
     const body = document.body;
 
-    // Alterna a classe 'active' que controla a animação no CSS
     const isOpening = !menu.classList.contains('active');
 
     if (isOpening) {
         menu.classList.add('active');
-        // Troca ícone para fechar (X) - Requer FontAwesome ou similar
         if (menuBtnIcon) menuBtnIcon.classList.replace('fa-bars', 'fa-xmark');
-        // Trava o scroll do site ao fundo para melhor UX
         body.style.overflow = 'hidden';
     } else {
         closeMenu(menu, menuBtnIcon, body);
@@ -24,7 +21,6 @@ function closeMenu(menu, icon, body) {
     body.style.overflow = 'auto';
 }
 
-// Fechar menu automaticamente ao clicar em qualquer link (Âncoras)
 function initMobileMenuLogic() {
     const menu = document.getElementById('mobileMenu');
     const menuBtnIcon = document.querySelector('.menu-btn i');
@@ -39,11 +35,9 @@ function initMobileMenuLogic() {
     });
 }
 
-
 // --- 2. EFEITOS DE SCROLL (NAVBAR) ---
 function handleNavbarScroll() {
     const navbar = document.getElementById('navbar');
-    // Adiciona sombra e cor sólida após 50px de scroll
     if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
     } else {
@@ -51,8 +45,7 @@ function handleNavbarScroll() {
     }
 }
 
-
-// --- 3. ANIMAÇÕES DE REVELAÇÃO (INTERSECTION OBSERVER) ---
+// --- 3. ANIMAÇÕES DE REVELAÇÃO ---
 function initScrollAnimations() {
     const reveals = document.querySelectorAll('.reveal');
     
@@ -65,7 +58,6 @@ function initScrollAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Para de observar após animar uma vez para performance
                 observer.unobserve(entry.target);
             }
         });
@@ -74,8 +66,59 @@ function initScrollAnimations() {
     reveals.forEach(el => observer.observe(el));
 }
 
+// --- 4. SISTEMA DE FEEDBACK (CARD NA TELA) ---
+// Função que cria e mostra o card de sucesso sem usar alerts
+function showFeedbackCard() {
+    // 1. Criar o elemento do card
+    const card = document.createElement('div');
+    card.id = 'feedbackCard';
+    
+    // 2. Estilizar o card via JS (ou você pode mover isso para o seu CSS)
+    Object.assign(card.style, {
+        position: 'fixed',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%) scale(0.7)',
+        backgroundColor: '#ffffff',
+        padding: '30px',
+        borderRadius: '15px',
+        boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+        zIndex: '9999',
+        textAlign: 'center',
+        transition: 'all 0.3s ease',
+        opacity: '0',
+        minWidth: '280px',
+        borderTop: '5px solid #10b981'
+    });
 
-// --- 4. FORMULÁRIO DE CONTATO ---
+    // 3. Conteúdo do Card
+    card.innerHTML = `
+        <div style="font-size: 50px; color: #10b981; margin-bottom: 15px;">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h3 style="margin-bottom: 10px; color: #1f2937;">Mensagem Enviada!</h3>
+        <p style="color: #6b7280; margin-bottom: 20px;">Entraremos em contato via WhatsApp em breve.</p>
+        <button id="closeCardBtn" style="background: #10b981; color: white; border: none; padding: 10px 25px; border-radius: 5px; cursor: pointer; font-weight: bold;">Ok, entendi</button>
+    `;
+
+    document.body.appendChild(card);
+
+    // 4. Animação de entrada
+    setTimeout(() => {
+        card.style.opacity = '1';
+        card.style.transform = 'translate(-50%, -50%) scale(1)';
+    }, 10);
+
+    // 5. Função para fechar
+    const closeBtn = card.querySelector('#closeCardBtn');
+    closeBtn.onclick = () => {
+        card.style.opacity = '0';
+        card.style.transform = 'translate(-50%, -50%) scale(0.7)';
+        setTimeout(() => card.remove(), 300);
+    };
+}
+
+// --- 5. FORMULÁRIO DE CONTATO ---
 function initContactForm() {
     const form = document.getElementById('contactForm');
     
@@ -86,43 +129,33 @@ function initContactForm() {
             const btn = form.querySelector('button');
             const originalText = btn.innerHTML;
             
-            // Feedback visual imediato
+            // Feedback no botão
             btn.disabled = true;
-            btn.style.opacity = '0.8';
             btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Enviando...`;
             
-            // Simulação de processamento premium
+            // Simulação de envio
             setTimeout(() => {
-                btn.innerHTML = `<i class="fa-solid fa-check"></i> Enviado com sucesso!`;
-                btn.style.background = '#10b981';
-                btn.style.opacity = '1';
-                
-                alert('✅ Mensagem recebida!\n\nNossa equipe OdontoAura entrará em contato via WhatsApp em instantes.');
+                // Chama o card customizado em vez do alert
+                showFeedbackCard();
                 
                 form.reset();
                 
-                // Restaura o botão após 3 segundos
+                // Restaura o botão
                 setTimeout(() => {
                     btn.innerHTML = originalText;
-                    btn.style.background = '';
                     btn.disabled = false;
-                }, 3000);
+                }, 1000);
             }, 1500);
         });
     }
 }
 
-
-// --- 5. INICIALIZAÇÃO ---
+// --- 6. INICIALIZAÇÃO ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Configurações Iniciais
     handleNavbarScroll();
     window.addEventListener('scroll', handleNavbarScroll, { passive: true });
     
     initMobileMenuLogic();
     initScrollAnimations();
     initContactForm();
-
-    // Log de Performance/Debug
-    console.log('%c🚀 OdontoAura: Sistema de responsividade e animações ativo.', 'color:#14b8a6; font-weight:bold;');
 });
