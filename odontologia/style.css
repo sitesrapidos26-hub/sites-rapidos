@@ -882,6 +882,61 @@ footer a:hover{
     transform: scale(1.15);
 }
 
+/* ====================== CTA TEMPLATE (ADAPTADO) ====================== */
+
+.cta-template {
+    padding: 100px 20px;
+    margin-top: 60px;
+    text-align: center;
+    /* Fundo suave para destacar o CTA sem brigar com o branco do site */
+    background: var(--gray);
+    border-top: 1px solid #e2e8f0;
+    position: relative;
+}
+
+.cta-template h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem; /* Seguindo a hierarquia do seu h2 */
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--dark);
+}
+
+.cta-template p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    color: #475569; /* Tom de cinza usado no seu about-text */
+    line-height: 1.6;
+}
+
+.cta-template .btn-site {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Gradiente e cores baseados no seu .btn-primary */
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    color: white;
+    
+    padding: 18px 38px;
+    border-radius: 50px; /* Estilo pill-button do seu site */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    
+    /* Efeito de sombra suave do seu sistema */
+    box-shadow: 0 10px 25px -5px rgba(20, 184, 166, 0.4);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cta-template .btn-site:hover {
+    /* Efeito de hover idêntico aos botões do Hero */
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 20px 35px -10px rgba(20, 184, 166, 0.5);
+    filter: brightness(1.1);
+}
+
 /* ====================== RESPONSIVIDADE ====================== */
 @media (max-width: 992px) {
     .grid-2,
