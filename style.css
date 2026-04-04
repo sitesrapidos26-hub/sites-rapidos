@@ -65,7 +65,7 @@ body::after {
 }
 
 .logo img { 
-    height: 120px; 
+    height: 140px; 
     transition: transform 0.4s ease; 
     object-fit: contain; /* Garante que a logo não distorça */
 }
