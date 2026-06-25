@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="Barbearia em Mogi Guaçu especializada em cortes modernos, barba e atendimento profissional. Agende pelo WhatsApp.">
+    <meta name="keywords" content="barbearia mogi guaçu, corte masculino mogi guaçu, barbeiro mogi guaçu">
+
+    <title>Barbearia Elite | Corte Masculino em Mogi Guaçu</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Supabase CDN (UMD module) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="barbearia/images/favicon/apple-touch-icon.png">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="barbearia/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="barbearia/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="barbearia/images/site.webmanifest">
+    <link rel="icon" href="barbearia/images/favicon/favicon.ico">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Firebase Removido pois agora usamos Supabase -->
+
+    <script src="script.js" defer></script>
+
+</head>
+
+<body>
+
+<div id="toastContainer" class="toast-container"></div>
+
+<header>
+    <div class="logo">ELITE</div>
+
+    <nav id="menu">
+        <a href="#servicos">Serviços</a>
+        <a href="#precos">Preços</a>
+        <a href="#agendamento">Agendar</a>
+        <a href="#avaliacoes">Avaliações</a>
+        <a href="#local">Local</a>
+    </nav>
+
+    <div class="menu-btn" id="menu-btn">
+        <i class="fas fa-bars"></i>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-badge" style="margin-bottom: 24px; font-family: 'Bebas Neue', cursive; font-size: 1.2rem; letter-spacing: 2px; display: inline-block; padding: 6px 16px; border: 1px solid var(--primary); border-radius: 4px; color: var(--primary);">
+        ✦ Barbearia Boutique
+    </div>
+    <h1 class="hero-title">
+        <span>ESTILO E</span>
+        <span>PRECISÃO</span>
+    </h1>
+    <p>Tradição, excelência e sofisticação em cada detalhe do seu visual.</p>
+    <a class="btn" href="#agendamento">Agendar horário <span class="arrow" style="margin-left: 6px; transition: transform 0.3s ease; display: inline-block;">→</span></a>
+
+    <div class="socials">
+        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://wa.me/5519999322908" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="mailto:teste@email.com"><i class="fas fa-envelope"></i></a>
+    </div>
+</section>
+
+<section id="servicos" class="section fade">
+    <div class="container">
+        <h2 class="section-title">Nossos Serviços</h2>
+        <div class="services-grid">
+            <div class="card service-card">
+                <h3>Corte Masculino</h3>
+                <p>Cortes modernos, degradês e clássicos com acabamento perfeito.</p>
+                <span class="price">R$ 35</span>
+            </div>
+            <div class="card service-card">
+                <h3>Barba Premium</h3>
+                <p>Modelagem completa com toalha quente, óleo e navalha.</p>
+                <span class="price">R$ 45</span>
+            </div>
+            <div class="card service-card">
+                <h3>Combo Corte + Barba</h3>
+                <p>Economia e experiência completa em um único horário.</p>
+                <span class="price">R$ 75</span>
+            </div>
+            <div class="card service-card">
+                <h3>Tratamento Capilar</h3>
+                <p>Hidratação profunda e revitalização do couro cabeludo.</p>
+                <span class="price">R$ 50</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="precos" class="section fade">
+    <div class="container">
+        <h2 class="section-title">Preços</h2>
+        <div class="prices">
+            <div class="price-card">
+                <h3>Corte</h3>
+                <p>Corte masculino completo</p>
+                <span>R$ 35</span>
+            </div>
+            <div class="price-card">
+                <h3>Barba</h3>
+                <p>Modelagem com navalha</p>
+                <span>R$ 45</span>
+            </div>
+            <div class="price-card">
+                <h3>Combo</h3>
+                <p>Corte + barba</p>
+                <span>R$ 75</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="agendamento" class="section fade">
+    <div class="container">
+        <h2 class="section-title">Agende seu Horário</h2>
+        <p class="section-subtitle">Escolha o serviço para começar</p>
+
+        <!-- Carousel de Cortes -->
+        <div class="carousel-container">
+            <!-- Botão Anterior -->
+            <button class="nav-btn prev" id="prevBtn" aria-label="Anterior">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <div class="cortes-track" id="track">
+                <div class="corte-card" data-servico="Degradê">
+                    <div class="img-wrapper"><img src="barbearia/images/imagem1.jpg" alt="Degradê"></div>
+                    <div class="card-info">
+                        <h3>Degradê</h3>
+                        <div class="meta"><span>R$ 35</span><span>30 min</span></div>
+                    </div>
+                </div>
+                <div class="corte-card" data-servico="Social">
+                    <div class="img-wrapper"><img src="barbearia/images/imagem2.jpg" alt="Social"></div>
+                    <div class="card-info">
+                        <h3>Social</h3>
+                        <div class="meta"><span>R$ 35</span><span>30 min</span></div>
+                    </div>
+                </div>
+                <div class="corte-card" data-servico="Navalhado">
+                    <div class="img-wrapper"><img src="barbearia/images/imagem3.jpg" alt="Navalhado"></div>
+                    <div class="card-info">
+                        <h3>Navalhado</h3>
+                        <div class="meta"><span>R$ 45</span><span>35 min</span></div>
+                    </div>
+                </div>
+                <div class="corte-card" data-servico="Barba">
+                    <div class="img-wrapper"><img src="barbearia/images/imagem4.jpg" alt="Barba"></div>
+                    <div class="card-info">
+                        <h3>Barba</h3>
+                        <div class="meta"><span>R$ 45</span><span>40 min</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botão Próximo -->
+            <button class="nav-btn next" id="nextBtn" aria-label="Próximo">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Passo 2: Barbeiro -->
+        <div id="step-barbeiro" class="hidden-step">
+            <h3 class="step-title">Escolha o Barbeiro</h3>
+            <div class="barbeiros-grid">
+                <div class="barbeiro-card" data-barbeiro="João">
+                    <img src="https://i.pravatar.cc/150?img=12" alt="João">
+                    <p>João</p>
+                </div>
+                <div class="barbeiro-card" data-barbeiro="Carlos">
+                    <img src="https://i.pravatar.cc/150?img=13" alt="Carlos">
+                    <p>Carlos</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Passo 3: Horários -->
+        <div id="step-horario" class="hidden-step">
+            <h3 class="step-title">Horários Disponíveis</h3>
+
+            <div style="margin: 25px 0; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                <label style="font-weight: 600; color: #d6ae82; font-size: 1.1rem; font-family: 'Sora', sans-serif;">Data do Agendamento:</label>
+                <div style="position: relative; max-width: 250px; width: 100%;" onclick="document.getElementById('dataAgendamento').showPicker()">
+                    <i class="fas fa-calendar-alt" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #d6ae82; cursor: pointer;"></i>
+                    <input type="date" id="dataAgendamento" class="custom-date-input"
+                        style="width: 100%; padding: 14px 15px 14px 45px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 8px; font-family: 'Manrope', sans-serif; font-size: 1rem; outline: none; transition: border-color 0.3s; cursor: pointer;">
+                </div>
+            </div>
+
+            <div class="horarios-grid" id="horarios-container"></div>
+        </div>
+
+        <!-- Passo 4: Confirmação -->
+        <div id="step-confirmacao" class="hidden-step">
+            <div class="booking-form">
+                <h3 class="step-title">Finalize seu Agendamento</h3>
+                <input type="text" id="nome" placeholder="Nome completo">
+                <input type="tel" id="telefone" placeholder="WhatsApp (com DDD)">
+                <button class="btn-primary" id="confirmar">Confirmar Agendamento</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="sobre" class="about section fade">
+    <div>
+        <h2 class="section-title">Sobre a Barbearia</h2>
+        <p>Com mais de 10 anos de experiência, nossa barbearia combina tradição e estilo moderno. Trabalhamos com técnicas profissionais e produtos de alta qualidade.</p>
+        <p>Ambiente confortável, atendimento personalizado e um espaço pensado para quem valoriza estilo.</p>
+    </div>
+    <img src="barbearia/images/sobre.jpg" alt="Sobre a Barbearia">
+</section>
+
+<section id="avaliacoes" class="section fade">
+    <h2 class="section-title">Avaliações</h2>
+    <div class="reviews">
+        <div class="review">
+            ⭐⭐⭐⭐⭐
+            <p>Melhor barbearia da cidade.</p>
+            <span>— Carlos</span>
+        </div>
+        <div class="review">
+            ⭐⭐⭐⭐⭐
+            <p>Corte perfeito e atendimento top.</p>
+            <span>— João</span>
+        </div>
+        <div class="review">
+            ⭐⭐⭐⭐⭐
+            <p>Ambiente muito profissional.</p>
+            <span>— Marcos</span>
+        </div>
+    </div>
+</section>
+
+<section id="local" class="location section fade">
+    <div class="location-info">
+        <h2 class="section-title">Horário e Contato</h2>
+        
+        <div class="hours">
+            <p><strong>Segunda a Sexta</strong><br>9h - 19h</p>
+            <p><strong>Sábado</strong><br>9h - 17h</p>
+            <p><strong>Endereço</strong><br>Rua Exemplo, 123<br>Centro - Mogi Guaçu, SP</p>
+        </div>
+    </div>
+
+    <div class="map">
+        <iframe 
+            src="https://maps.google.com/maps?q=Centro+Mogi+Guacu+SP&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+            loading="lazy">
+        </iframe>
+
+        <a class="route-btn" 
+           href="https://www.google.com/maps/dir/?api=1&destination=Rua+Exemplo+123+Centro+Mogi+Guacu+SP" 
+           target="_blank">
+           Como chegar
+        </a>
+    </div>
+</section>
+
+<section class="cta-template">
+    <h2>Gostou deste site?</h2>
+    <p>Você pode ter um site profissional como este para sua barbearia.</p>
+    <a href="https://wa.me/5519999322908?text=Olá,%20vi%20o%20template%20de%20barbearia%20e%20quero%20um%20site%20assim." class="btn-site" target="_blank">Quero um site como este</a>
+</section>
+
+<footer>
+    <p>© 2026 Barbearia Elite • Desenvolvido por <a href="https://sites-rapidos.com">Sites Rápidos</a></p>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/5519999322908?text=Olá!%20Gostaria%20de%20agendar%20um%20horário." target="_blank">WhatsApp</a>
+
+</body>
+</html>

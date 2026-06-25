@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="OdontoAura - Clínica de odontologia estética premium em Mogi Mirim. Sorriso confiante com tecnologia avançada e atendimento humanizado.">
+    <title>OdontoAura | Seu Sorriso, Nossa Obra-Prima</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./images/favicon/site.webmanifest">
+    <link rel="icon" href="./images/favicon/favicon.ico">
+
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-content">
+            <div class="brand">
+                <div class="logo"><i class="fa-solid fa-tooth"></i></div>
+                <h1>OdontoAura</h1>
+            </div>
+
+            <div class="menu">
+                <a href="#sobre">Sobre</a>
+                <a href="#diferenciais">Diferenciais</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#equipe">Equipe</a>
+                <a href="#depoimentos">Depoimentos</a>
+                <a href="#galeria">Galeria</a>
+                <a href="#contato">Contato</a>
+            </div>
+
+            <a href="#contato" class="btn-primary nav-cta">
+                <i class="fab fa-whatsapp"></i> Agendar
+            </a>
+
+            <button class="menu-btn" onclick="toggleMobileMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu">
+            <a href="#sobre" onclick="toggleMobileMenu()">Sobre</a>
+            <a href="#diferenciais" onclick="toggleMobileMenu()">Diferenciais</a>
+            <a href="#servicos" onclick="toggleMobileMenu()">Serviços</a>
+            <a href="#equipe" onclick="toggleMobileMenu()">Equipe</a>
+            <a href="#depoimentos" onclick="toggleMobileMenu()">Depoimentos</a>
+            <a href="#galeria" onclick="toggleMobileMenu()">Galeria</a>
+            <a href="#contato" onclick="toggleMobileMenu()">Contato</a>
+            <a href="#contato" class="btn-primary mobile-cta" onclick="toggleMobileMenu()">
+                <i class="fab fa-whatsapp"></i> Agendar Consulta
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+            <div class="hero-badge reveal" style="margin-bottom: 24px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; display: inline-block; padding: 6px 14px; border: 1px solid rgba(20, 184, 166, 0.4); border-radius: 100px; color: var(--primary); background: rgba(20, 184, 166, 0.05);">
+                ✦ Clínica Odontológica Premium
+            </div>
+            <h1 class="hero-title reveal">
+                Seu sorriso<br>
+                <span class="highlight">mais confiante</span>
+            </h1>
+            <p class="hero-subtitle reveal">
+                Odontologia estética premium com tecnologia de ponta, resultados naturais e atendimento humanizado.
+            </p>
+            <div class="hero-cta reveal">
+                <a href="#contato" class="btn-primary large">
+                    <i class="fab fa-whatsapp"></i> Agendar agora <span class="arrow" style="margin-left: 6px; transition: transform 0.3s ease; display: inline-block;">→</span>
+                </a>
+                <a href="#servicos" class="btn-secondary">Explorar serviços</a>
+                </div>
+
+                <div class="hero-trust reveal">
+                    <div class="trust-item">
+                        <i class="fa-solid fa-medal"></i>
+                        <span>Clínica premiada 2025</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Tecnologia 3D + Laser</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fa-solid fa-users"></i>
+                        <span>+4.800 sorrisos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <!-- SOBRE -->
+    <section id="sobre" class="section reveal">
+        <div class="container">
+            <div class="about-grid grid-2">
+                
+                <!-- Coluna da Imagem -->
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=60" 
+                        alt="Interior premium da clínica OdontoAura" 
+                        class="premium-image">
+                    <!-- Badge flutuante -->
+                    <div class="image-badge">
+                        <span>Clínica Premium</span>
+                        <span class="year">Desde 2018</span>
+                    </div>
+                </div>
+                
+                <!-- Coluna de Conteúdo -->
+                <div class="about-content">
+                    <span class="badge">OdontoAura • Mogi Mirim</span>
+                    
+                    <h2 class="about-title">Transformando sorrisos com excelência e cuidado</h2>
+                    
+                    <p class="about-lead">
+                        Mais do que uma clínica odontológica, a OdontoAura é um ambiente sofisticado onde tecnologia de ponta, estética refinada e atendimento humanizado se encontram.
+                    </p>
+                    
+                    <p class="about-text">
+                        Projetada para oferecer conforto e bem-estar, nossa clínica conta com design contemporâneo, iluminação suave e uma equipe altamente qualificada que trata cada paciente com dedicação exclusiva.
+                    </p>
+
+                    <!-- Estatísticas em estilo premium (diferente do convencional) -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">4.800+</div>
+                            <div class="stat-label">Sorrisos transformados</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">98,7%</div>
+                            <div class="stat-label">de satisfação</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Especialistas</div>
+                        </div>
+                    </div>
+
+                    <a href="#servicos" class="btn-secondary about-cta">
+                        Conheça nossos serviços
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIFERENCIAIS -->
+    <section id="diferenciais" class="section gray reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2>Por que OdontoAura?</h2>
+                <p class="section-subtitle">Diferenciais que elevam sua experiência a outro nível</p>
+            </div>
+            
+            <div class="grid-3">
+                <div class="diff-card reveal">
+                    <div class="icon-wrapper"><i class="fa-solid fa-microchip"></i></div>
+                    <h3>Tecnologia de Ponta</h3>
+                    <p>Scanner intraoral 3D, laser odontológico, impressora 3D e software de design digital para precisão milimétrica.</p>
+                </div>
+                <div class="diff-card reveal">
+                    <div class="icon-wrapper"><i class="fa-solid fa-spa"></i></div>
+                    <h3>Ambiente Premium</h3>
+                    <p>Clínica projetada como um spa: música ambiente, aromaterapia e cadeiras de luxo com massagem.</p>
+                </div>
+                <div class="diff-card reveal">
+                    <div class="icon-wrapper"><i class="fa-solid fa-user-doctor"></i></div>
+                    <h3>Equipe Internacional</h3>
+                    <p>Profissionais com formação no Brasil, EUA e Europa — atualização contínua e paixão pelo que fazem.</p>
+                </div>
+                <div class="diff-card reveal">
+                    <div class="icon-wrapper"><i class="fa-solid fa-heart-circle-check"></i></div>
+                    <h3>Cuidado Humanizado</h3>
+                    <p>Sedação consciente opcional, acompanhamento 24h via WhatsApp e planos personalizados.</p>
+                </div>
+                <div class="diff-card reveal">
+                    <div class="icon-wrapper"><i class="fa-solid fa-leaf"></i></div>
+                    <h3>Resultados Naturais</h3>
+                    <p>Design de sorriso que respeita sua personalidade e harmonia facial — nunca artificial.</p>
+                </div>
+                <div class="diff-card reveal">
+                    <div class="icon-wrapper"><i class="fa-solid fa-clock"></i></div>
+                    <h3>Agilidade Luxuosa</h3>
+                    <p>Tratamentos em menos consultas, com horários flexíveis e atendimento VIP.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section id="servicos" class="section reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2>Serviços Premium</h2>
+                <p class="section-subtitle">Transformações que vão além da estética</p>
+            </div>
+            
+            <div class="grid-3">
+                <div class="service-card reveal">
+                    <i class="fa-solid fa-sun"></i>
+                    <h3>Clareamento a Laser</h3>
+                    <p>Até 8 tons mais branco em uma única sessão com laser de última geração.</p>
+                    <span class="price">A partir de R$ 1.290</span>
+                </div>
+                <div class="service-card reveal">
+                    <i class="fa-solid fa-gem"></i>
+                    <h3>Lentes de Contato Dental</h3>
+                    <p>Porcelana ultra-fina, bordas invisíveis e resultado 100% natural.</p>
+                    <span class="price">A partir de R$ 2.890/unidade</span>
+                </div>
+                <div class="service-card reveal">
+                    <i class="fa-solid fa-tooth"></i>
+                    <h3>Implantes Premium</h3>
+                    <p>Titânio de grau cirúrgico + coroa de zircônia — carga imediata quando possível.</p>
+                    <span class="price">Sob consulta</span>
+                </div>
+                <div class="service-card reveal">
+                    <i class="fa-solid fa-face-smile"></i>
+                    <h3>Harmonização Facial</h3>
+                    <p>Botox, preenchimento e bioestimuladores para um sorriso harmonioso e rejuvenescido.</p>
+                    <span class="price">A partir de R$ 890</span>
+                </div>
+                <div class="service-card reveal">
+                    <i class="fa-solid fa-align-center"></i>
+                    <h3>Ortodontia Invisível</h3>
+                    <p>Invisalign® e alinhadores transparentes — correção discreta e confortável.</p>
+                    <span class="price">A partir de R$ 4.900</span>
+                </div>
+                <div class="service-card reveal">
+                    <i class="fa-solid fa-crown"></i>
+                    <h3>Faceta de Porcelana</h3>
+                    <p>Transformação completa do sorriso com facetas de alta estética e durabilidade.</p>
+                    <span class="price">A partir de R$ 2.490/unidade</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EQUIPE -->
+    <section id="equipe" class="section gray reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nossa Equipe de Especialistas</h2>
+                <p class="section-subtitle">Profissionais apaixonados pelo seu sorriso</p>
+            </div>
+            
+            <div class="grid-3">
+                <div class="team-card reveal">
+                    <img src="https://picsum.photos/id/64/400/400" alt="Dra. Laura Mendes">
+                    <h3>Dra. Laura Mendes</h3>
+                    <p class="specialty">Especialista em Estética e Lentes</p>
+                    <p class="bio">Mestre em Odontologia Estética pela USP • +12 anos de experiência internacional.</p>
+                </div>
+                <div class="team-card reveal">
+                    <img src="https://picsum.photos/id/1005/400/400" alt="Dr. Rafael Costa">
+                    <h3>Dr. Rafael Costa</h3>
+                    <p class="specialty">Cirurgião Bucomaxilofacial e Implantes</p>
+                    <p class="bio">Pós-graduado em Harvard • Especialista em implantes de carga imediata.</p>
+                </div>
+                <div class="team-card reveal">
+                    <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=800&q=60" alt="Dra. Sofia Almeida">
+                    <h3>Dra. Sofia Almeida</h3>
+                    <p class="specialty">Ortodontia Invisível e Harmonização</p>
+                    <p class="bio">Certificada Invisalign® Diamond Provider • Foco em sorrisos harmoniosos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section id="depoimentos" class="section reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2>Histórias que nos inspiram</h2>
+            </div>
+            
+            <div class="testimonials-grid grid-3">
+                <div class="testimonial-card reveal">
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>“As lentes mudaram minha vida. O atendimento é de outro mundo — me senti em um spa de luxo. Meu sorriso nunca esteve tão perfeito!”</p>
+                    <div class="author">
+                        <strong>Mariana Ferreira</strong>
+                        <span>Lentes de Contato • Mogi Mirim</span>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>“Implante feito com tanta precisão que voltei a sorrir sem medo. A Dra. Laura é incrível e a equipe toda é de alto nível.”</p>
+                    <div class="author">
+                        <strong>João Pedro Santos</strong>
+                        <span>Implante + Clareamento</span>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>“Harmonização facial + ortodontia invisível. Resultado natural e rápido. Recomendo para quem quer qualidade premium de verdade.”</p>
+                    <div class="author">
+                        <strong>Beatriz Lima</strong>
+                        <span>Harmonização Facial</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section id="galeria" class="section gray reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2>Galeria de Sorrisos</h2>
+                <p class="section-subtitle">Transformações reais</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&q=80&w=800" alt="Foto - Lentes">
+                    <div class="gallery-overlay">
+                        <span>Lentes de Contato</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=800" alt="Foto - Clareamento">
+                    <div class="gallery-overlay">
+                        <span>Clareamento Laser</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1600170311833-c2cf5280ce49?auto=format&fit=crop&q=80&w=800" alt="Foto - Implante">
+                    <div class="gallery-overlay">
+                        <span>Implante + Coroa</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=800" alt="Foto - Harmonização">
+                    <div class="gallery-overlay">
+                        <span>Harmonização Facial</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=800" alt="Foto - Facetas">
+                    <div class="gallery-overlay">
+                        <span>Faceta de Porcelana</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=800&q=60" alt="Foto - Ortodontia">
+                    <div class="gallery-overlay">
+                        <span>Ortodontia Invisível</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO - VERSÃO PREMIUM ATUALIZADA -->
+    <section id="contato" class="section">
+        <div class="container">
+            <div class="contact-wrapper grid-2">
+                
+                <!-- Coluna de Informações -->
+                <div class="contact-info">
+                    <h2 class="contact-title">Vamos criar<br>seu sorriso dos sonhos?</h2>
+                    <p class="contact-subtitle">
+                        Agende sua avaliação gratuita e descubra o que a <strong>OdontoAura</strong> pode fazer por você.
+                    </p>
+                    
+                    <div class="info-list">
+                        <div class="info-item">
+                            <div class="icon-circle">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">Endereço</span>
+                                <p>Rua Dr. José de Souza, 456 • Centro<br>Mogi Mirim, SP • CEP 13800-000</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="icon-circle">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">WhatsApp / Telefone</span>
+                                <a href="https://wa.me/5519999999999" class="info-link" target="_blank">(19) 99999-9999</a>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="icon-circle">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">Horário de Atendimento</span>
+                                <p>Segunda a sexta: 08h–18h<br>Sábado: 08h–12h</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Redes Sociais com Hovers Premium -->
+                    <div class="socials-premium">
+                        <a href="https://instagram.com" aria-label="Instagram" class="social-btn" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://facebook.com" aria-label="Facebook" class="social-btn" target="_blank">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://whatsapp.com" aria-label="WhatsApp" class="social-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Coluna do Formulário -->
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="nome" placeholder="Seu nome completo" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="whatsapp" placeholder="Seu WhatsApp (com DDD)" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Seu e-mail (opcional)">
+                        </div>
+                        <div class="form-group">
+                            <textarea id="mensagem" rows="5" 
+                                    placeholder="Conte-nos o que você deseja (clareamento, lentes, implante...)"
+                                    required></textarea>
+                        </div>
+                        
+                        <!-- Botão WhatsApp Premium -->
+                        <button type="submit" class="btn-whatsapp-premium">
+                            <i class="fab fa-whatsapp"></i>
+                            Enviar e agendar agora
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-template">
+        <h2>Gostou deste site?</h2>
+        <p>Você pode ter um site profissional como este para sua barbearia.</p>
+
+        <a href="https://wa.me/5519999322908?text=Olá,%20vi%20o%20template%20de%20imobiliária%20no%20sites-rapidos.com%20e%20quero%20um%20site%20assim." 
+        class="btn-site" target="_blank">
+        Quero um site como este
+        </a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="brand-footer">
+                    <div class="logo"><i class="fa-solid fa-tooth"></i></div>
+                    <h1>OdontoAura</h1>
+                </div>
+                <p class="footer-text">
+                    © 2026 OdontoAura — Odontologia Estética Premium<br>
+                    Mogi Mirim, São Paulo • Todos os direitos reservados<br>
+                    Desenvolvido por <a href="https://sites-rapidos.com">Sites Rápidos</a>
+                </p>
+                <div class="footer-links">
+                    <a href="#sobre">Sobre</a>
+                    <a href="#servicos">Serviços</a>
+                    <a href="#galeria">Galeria</a>
+                    <a href="#">Política de Privacidade</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/5519999999999" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+<script src="script.js"></script>
+</body>
+
+<div id="status-card" class="card-sucesso hidden">
+    <div class="card-content">
+        <span class="icon">✅</span>
+        <h3>Mensagem Enviada!</h3>
+        <p>Agradecemos o contato. Responderemos em breve.</p>
+        <button onclick="fecharCard()">Fechar</button>
+    </div>
+</div>
+
+</html>

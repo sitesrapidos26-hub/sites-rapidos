@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barber Premium | Dashboard</title>
+    <!-- Fontes Premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="painel.css">
+    <!-- Supabase CDN (UMD module) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <!-- OVERLAY DE LOGIN -->
+    <div id="loginSection" class="login-overlay">
+        <div class="login-box">
+            <div class="login-logo">
+                <i class="fas fa-cut"></i>
+                <h2>BARBER ELITE</h2>
+            </div>
+            <p class="login-sub">Painel Administrativo</p>
+            <form id="formLogin">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="senha" placeholder="Senha" required>
+                </div>
+                <div id="loginError" class="error-msg"></div>
+                <button type="submit" id="btnLogin" class="btn-primary">
+                    <span>Entrar no Sistema</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+        <div class="login-bg-glow"></div>
+    </div>
+
+    <!-- TOAST NOTIFICATIONS -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <div class="app-container hidden" id="appContainer">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-cut"></i>
+                <span>ELITE</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-link active" data-page="agenda">
+                    <i class="fas fa-calendar-day"></i> 
+                    <span>Hoje</span>
+                </a>
+                <a href="#" class="nav-link" data-page="agendaCompleta">
+                    <i class="fas fa-calendar-alt"></i> 
+                    <span>Calendário</span>
+                </a>
+                <a href="#" class="nav-link" data-page="bloqueios">
+                    <i class="fas fa-lock"></i> 
+                    <span>Bloqueios</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button onclick="logout()" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> <span>Sair</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <h1 id="tituloPagina">Agenda de Hoje</h1>
+                    <span class="date-badge" id="dataAtualBadge">...</span>
+                </div>
+                <div class="topbar-right">
+                    <div class="status-indicator" id="statusUpdate">
+                        <div class="pulse-dot"></div>
+                        <span>Sincronizado</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="action-bar" id="botoesFixos">
+                <button class="btn-secondary" onclick="carregarAgenda()">
+                    <i class="fas fa-sync-alt"></i> Atualizar
+                </button>
+                <button class="btn-primary" onclick="abrirModalBloquear()">
+                    <i class="fas fa-ban"></i> Bloquear Horário
+                </button>
+            </div>
+
+            <!-- Dashboard Stats (Visível na Agenda) -->
+            <div id="dashboardStats" class="stats-grid hidden">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-info">
+                        <p>Total Hoje</p>
+                        <h3 id="statTotal">0</h3>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: #00ff88;"><i class="fas fa-check-circle"></i></div>
+                    <div class="stat-info">
+                        <p>Concluídos</p>
+                        <h3 id="statConcluidos">0</h3>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: #d6ae82;"><i class="fas fa-clock"></i></div>
+                    <div class="stat-info">
+                        <p>Pendentes</p>
+                        <h3 id="statPendentes">0</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTAINER DINÂMICO -->
+            <div id="conteudo" class="conteudo-dinamico"></div>
+        </main>
+    </div>
+
+    <!-- MODAL BLOQUEAR HORÁRIO -->
+    <div id="modalBloquear" class="modal-overlay hidden">
+        <div class="modal-content glass-panel">
+            <button class="btn-close" onclick="fecharModal('modalBloquear')"><i class="fas fa-times"></i></button>
+            <h2>Gerenciar Indisponibilidade</h2>
+            <p class="modal-sub">Selecione os horários que deseja fechar na agenda.</p>
+
+            <div class="form-group">
+                <label>Data</label>
+                <input type="date" id="dataBloqueio" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label>Horários (Segure CTRL para múltiplos)</label>
+                <select id="horarioBloqueio" class="form-control select-multi" multiple></select>
+            </div>
+
+            <div class="form-group">
+                <label>Motivo (opcional)</label>
+                <input type="text" id="motivoBloqueio" class="form-control" placeholder="Ex: Almoço, Folga, Manutenção">
+            </div>
+
+            <button class="btn-primary btn-block" onclick="salvarBloqueio()" style="margin-top: 15px;">
+                <i class="fas fa-lock"></i> Bloquear Agenda
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL CONFIRMAÇÃO ESTILIZADO -->
+    <div id="modalConfirmacao" class="modal-overlay hidden">
+        <div class="modal-content glass-panel" style="max-width: 400px; text-align: center;">
+            <div class="modal-icon-warning"><i class="fas fa-exclamation-triangle"></i></div>
+            <h3 style="margin-bottom: 10px;">Atenção</h3>
+            <p id="textoConfirmacao" style="color: var(--text-muted); margin-bottom: 25px;">Deseja confirmar esta ação?</p>
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <button class="btn-secondary" onclick="fecharModal('modalConfirmacao')">Cancelar</button>
+                <button class="btn-primary" id="btnConfirmarAcao" style="background: var(--danger); border-color: var(--danger); color: white;">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="painel.js" type="module"></script>
+</body>
+</html>

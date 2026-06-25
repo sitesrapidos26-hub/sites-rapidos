@@ -1,0 +1,680 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #c59b6d;
+    --gray: #161616;
+    --dark: #0c0c0c;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding: 90px;
+}
+
+body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--dark);
+    color: #fff;
+    line-height: 1.6;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 18px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #000;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,.5);
+}
+
+.logo {
+    font-family: 'Bebas Neue';
+    font-size: 35px;
+    letter-spacing: 3px;
+    color: var(--primary);
+}
+
+nav a {
+    margin-left: 25px;
+    color: #ddd;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: var(--primary);
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.9)), url("./images/hero.jpg");
+    background-size: cover;
+    padding: 0 20px;
+    gap: 10px;
+}
+
+.hero-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+}
+
+.hero-title span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: wordUp .8s ease forwards;
+}
+
+.hero-title span:nth-child(1) { animation-delay: .1s; }
+.hero-title span:nth-child(2) { animation-delay: .35s; }
+.hero-title span:nth-child(3) { animation-delay: .6s; }
+
+@keyframes wordUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero p {
+    margin: 15px 0 25px;
+    color: #ccc;
+}
+
+.btn, .btn-primary, .btn-site {
+    background: var(--primary);
+    color: #000;
+    padding: 14px 26px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: .3s;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover, .btn-primary:hover, .btn-site:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,.3);
+    background: #d6ae82;
+}
+
+.btn:hover .arrow {
+    transform: translateX(4px);
+}
+
+.socials {
+    margin-top: 25px;
+    display: flex;
+    gap: 18px;
+}
+
+.socials a {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #161616;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.socials a:hover {
+    transform: translateY(-4px);
+    background: var(--primary);
+    color: #000;
+}
+
+.section {
+    padding: 96px 10%;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.section-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #888;
+    margin-top: -30px;
+    margin-bottom: 50px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.card, .price-card {
+    background: var(--gray);
+    padding: 25px;
+    border-radius: 8px;
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.card:hover, .price-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,.3);
+}
+
+.price-card {
+    text-align: center;
+}
+
+.price-card span {
+    font-size: 28px;
+    color: var(--primary);
+    display: block;
+    margin-top: 10px;
+}
+
+.prices {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.price-card {
+    flex: 1;
+    min-width: 220px;
+}
+
+/* ====================== CAROUSEL CORRIGIDO ====================== */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 30px 0;
+    z-index: 1;
+}
+
+.cortes-track {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* mais rápida */
+    will-change: transform;
+    position: relative;
+    z-index: 1;
+}
+
+.corte-card {
+    min-width: 300px;
+    flex: 0 0 300px;
+    background: var(--gray);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+}
+
+.corte-card:hover {
+    transform: translateY(-8px);
+}
+
+.corte-card.active {
+    border-color: var(--primary);
+}
+
+.img-wrapper {
+    height: 220px;
+    overflow: hidden;
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-info {
+    padding: 20px;
+}
+
+.meta {
+    display: flex;
+    justify-content: space-between;
+    color: var(--primary);
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Botões de navegação */
+.nav-btn {
+    background: var(--primary);
+    border: none;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    color: #000;
+    font-size: 1.45rem;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: all;
+}
+
+.nav-btn:hover {
+    background: #d6ae82;
+    transform: translateY(-50%) scale(1.15);
+}
+
+.prev { left: 12px; }
+.next { right: 12px; }
+
+/* Centraliza melhor o ícone do Font Awesome */
+.nav-btn i {
+    line-height: 1;
+}
+
+/* === AGENDAMENTO === */
+.hidden-step {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+    margin-top: 50px;
+}
+
+.hidden-step.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#agendamento {
+    padding-bottom: 120px; /* espaço extra embaixo */
+}
+
+.step-title {
+    margin-bottom: 25px;
+}
+
+.barbeiros-grid {
+    margin-bottom: 50px;
+}
+
+.horarios-grid {
+    margin-bottom: 50px;
+}
+
+.booking-form {
+    margin-top: 40px;
+}
+
+.barbeiros-grid, .horarios-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.barbeiro-card, .horario {
+    background: var(--gray);
+    padding: 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    text-align: center;
+    transition: 0.3s;
+    min-width: 140px;
+}
+
+.barbeiro-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.barbeiro-card.active,
+.horario.selected {
+    border-color: var(--primary);
+    background: #222;
+}
+
+.booking-form {
+    max-width: 450px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.booking-form input {
+    padding: 15px;
+    background: #111;
+    border: 1px solid #333;
+    color: white;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* Outros estilos */
+.about {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.about img {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.reviews {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.review {
+    background: var(--gray);
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1;
+    min-width: 280px;
+}
+
+.location {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* HORÁRIO E CONTATO */
+.hours {
+    background: #161616;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.hours p {
+    margin-bottom: 18px;
+    font-size: 1.05rem;
+}
+
+.hours p:last-child {
+    margin-bottom: 0;
+}
+
+.hours strong {
+    color: var(--primary);
+}
+
+/* MAPA */
+.map {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.map iframe {
+    width: 100%;
+    height: 380px;
+    border: none;
+}
+
+/* RESPONSIVIDADE DO MAPA */
+@media (max-width: 768px) {
+    .map iframe {
+        height: 300px;
+    }
+}
+
+.route-btn {
+    display: inline-block;
+    margin-top: 15px;
+    background: var(--primary);
+    color: #000;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: .3s;
+}
+
+.route-btn:hover {
+    transform: translateY(-3px);
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #090909;
+}
+
+footer a{
+    text-decoration: none;
+    color:white;
+}
+
+.whatsapp {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #25d366;
+    padding: 15px 20px;
+    border-radius: 30px;
+    color: #fff;
+    text-decoration: none;
+    transition: .25s;
+}
+
+.whatsapp:hover {
+    transform: translateY(-4px) scale(1.04);
+}
+
+.menu-btn {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.cta-template {
+    text-align: center;
+    padding: 70px 20px;
+    background: #111;
+    border-top: 1px solid #222;
+}
+
+.cta-template h2 {
+    font-family: 'Bebas Neue';
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.cta-template p {
+    color: #ccc;
+    margin-bottom: 25px;
+}
+
+/* ====================== HOVERS SUAVES (aumento mínimo) ====================== */
+
+/* Barbeiros */
+.barbeiro-card {
+    transition: all 0.25s ease;
+}
+
+.barbeiro-card:hover {
+    transform: translateY(-4px) scale(1.02);   /* aumento bem leve */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    border-color: var(--primary);
+}
+
+.barbeiro-card img {
+    transition: transform 0.3s ease;
+}
+
+.barbeiro-card:hover img {
+    transform: scale(1.02);   /* leve zoom na foto */
+}
+
+/* Horários */
+.horario {
+    transition: all 0.25s ease;
+    font-weight: 500;
+}
+
+.horario:hover {
+    transform: translateY(-4px) scale(1.02);   /* aumento mínimo */
+    background: #1f1f1f;
+    border-color: var(--primary);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.horario.selected {
+    border-color: var(--primary);
+    background: #222;
+    transform: scale(1.03);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .about {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .prices {
+        flex-direction: column;
+    }
+
+    .location {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        background: #111;
+        width: 220px;
+        height: calc(100vh - 70px);
+        display: flex;
+        flex-direction: column;
+        padding: 25px;
+        transition: .4s;
+        z-index: 999;
+    }
+
+    nav.show {
+        right: 0;
+    }
+
+    nav a {
+        margin: 15px 0;
+    }
+
+    .menu-btn {
+        display: block;
+        z-index: 1001;
+    }
+
+    .hero h1 {
+        font-size: 46px;
+    }
+
+    .section {
+        padding: 60px 6%;
+    }
+}
+
+/* ========================================================
+   TOAST NOTIFICATIONS (Substitui os alerts)
+   ======================================================== */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    background: #141414;
+    border-left: 4px solid var(--primary);
+    color: #f0f0f0;
+    padding: 16px 20px;
+    border-radius: 6px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 250px;
+    transform: translateX(120%);
+    opacity: 0;
+    animation: toastSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.toast.toast-error { border-left-color: #ff4757; }
+.toast.toast-success { border-left-color: #2ed573; }
+
+.toast.closing {
+    animation: toastSlideOut 0.3s ease forwards;
+}
+
+@keyframes toastSlideIn {
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* ========================================================
+   DATE INPUT CUSTOMIZATION
+   ======================================================== */
+.custom-date-input::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes toastSlideOut {
+    to { transform: translateX(120%); opacity: 0; }
+}
