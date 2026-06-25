@@ -8,7 +8,7 @@ let fotoAtual = 0;
 let fotosImovel = [];
 
 // ─────────────── CARREGAMENTO INICIAL ───────────────
-fetch("./data/imoveis.json")
+fetch("imobiliaria/data/imoveis.json")
     .then(res => res.json())
     .then(data => {
         todosImoveis = data.imoveis || [];
