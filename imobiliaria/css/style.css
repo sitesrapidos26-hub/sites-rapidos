@@ -136,7 +136,7 @@ nav a.active {
 .hero {
     height: 70vh;
     min-height: 500px;
-    background: url("../images/hero/hero.jpg") center/cover no-repeat;
+    background: url("./images/hero/hero.jpg") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
