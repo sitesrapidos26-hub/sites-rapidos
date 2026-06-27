@@ -1,0 +1,319 @@
+/* premium-demo.css — Camada de Refinamento High-End para Demos
+   Versão 2: prefers-reduced-motion + no-JS fallback + CLS-safe */
+
+/* ─── 1. Variáveis ────────────────────────────────────────── */
+:root {
+  --premium-shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --premium-shadow-md: 0 12px 24px rgba(0, 0, 0, 0.08);
+  --premium-shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.12);
+  --premium-radius: 12px;
+  --premium-duration: 0.4s;
+  --premium-ease: cubic-bezier(0.25, 1, 0.5, 1);
+  --premium-transition: all var(--premium-duration) var(--premium-ease);
+}
+
+/* ─── 2. Suavização Geral ─────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  line-height: 1.6;
+}
+
+/* ─── 3. Refinamento de Cards ─────────────────────────────── */
+.card, .service-card, .price-card, .processo-item, .vantagem {
+  transition: var(--premium-transition);
+  border-radius: var(--premium-radius);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  box-shadow: var(--premium-shadow-sm);
+}
+
+.card:hover, .service-card:hover, .price-card:hover,
+.processo-item:hover, .vantagem:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--premium-shadow-md);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* ─── 4. Refinamento de Botões ────────────────────────────── */
+.btn, .btn-primary, .card-btn {
+  transition: var(--premium-transition);
+  border-radius: 8px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.btn:hover, .btn-primary:hover, .card-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--premium-shadow-sm);
+  filter: brightness(1.05);
+}
+
+/* ─── 5. Microanimações de Entrada ────────────────────────── */
+/* Fallback no-JS: seções ficam visíveis sem JS ativo */
+.premium-reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─── 5. Overlay / Bloco – refinado ───────────────────────────────────── */
+.js-ready .premium-reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.32s cubic-bezier(0.25,1,0.5,1), transform 0.32s cubic-bezier(0.25,1,0.5,1);
+  will-change: opacity, transform;
+}
+
+.js-ready .premium-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── 6. Título & Subtítulo – animação sutil ───────────────────────────── */
+.premium-conversion-content {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.30s ease-out, transform 0.30s ease-out;
+}
+
+.premium-conversion-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── 7. Benefícios – escala suave ───────────────────────────────────── */
+.premium-benefits-list li {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.22s ease-out, transform 0.22s ease-out;
+}
+
+.premium-benefits-list li.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ─── 8. Botões – hover & foco ──────────────────────────────────────── */
+.premium-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--premium-shadow-sm);
+}
+
+.premium-btn:focus-visible {
+  outline: 2px solid var(--primary, #000);
+  outline-offset: 2px;
+}
+
+/* ─── 9. Fechar (×) – fade + scale ───────────────────────────────────── */
+.premium-close {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+}
+
+.premium-close.closing {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+/* ─── 10. prefers‑reduced‑motion – desativar animações ─────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .js-ready .premium-reveal,
+  .js-ready .premium-reveal.visible,
+  .premium-conversion-content,
+  .premium-benefits-list li,
+  .premium-close {
+    opacity: 1;
+    transform: none;
+    transition: none !important;
+  }
+}
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Garante visibilidade imediata mesmo com JS ativo */
+  .js-ready .premium-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ─── 7. Imagens — CLS-safe (prevenir layout shift) ──────── */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Tags picture não devem introduzir box model próprio */
+picture {
+  display: contents;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   ESTILOS DO BLOCO DE CONVERSÃO FINAL
+   ───────────────────────────────────────────────────────────── */
+.premium-conversion-block {
+  background: linear-gradient(145deg, #f8f9fa, #ffffff);
+  padding: 80px 20px;
+  text-align: center;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  font-family: inherit;
+}
+
+.premium-conversion-content {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 60px 40px;
+  border-radius: 24px;
+  box-shadow: var(--premium-shadow-lg);
+  border: 1px solid rgba(0,0,0,0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Linha colorida no topo usa a cor primária de cada template */
+.premium-conversion-content::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+  background: var(--primary, #000);
+}
+
+.premium-conversion-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #111;
+  letter-spacing: -0.5px;
+}
+
+.premium-conversion-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.premium-benefits-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 48px;
+  list-style: none;
+  padding: 0;
+}
+
+.premium-benefits-list li {
+  background: #f8f9fa;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.premium-benefits-list li i {
+  color: var(--primary, #10b981);
+}
+
+.premium-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.premium-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--premium-transition);
+}
+
+.premium-btn-primary {
+  background: var(--primary, #111);
+  color: #fff !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.premium-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  filter: brightness(1.1);
+}
+
+.premium-btn-secondary {
+  background: #fff;
+  color: #333 !important;
+  border: 1px solid #ddd;
+}
+
+.premium-btn-secondary:hover {
+  background: #f8f9fa;
+  border-color: #ccc;
+  transform: translateY(-2px);
+}
+
+/* ─── 8. Responsividade do bloco ─────────────────────────── */
+@media (max-width: 768px) {
+  .premium-conversion-content {
+    padding: 40px 20px;
+  }
+  .premium-conversion-title {
+    font-size: 2rem;
+  }
+  .premium-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .premium-btn {
+    width: 100%;
+  }
+}
+
+/* ─── 9. CLS-safe: height:auto + aspect-ratio ─────────────────────────────── */
+/* Garante que imagens com width+height explícitos nunca fiquem esticadas */
+img[width][height] {
+  height: auto;
+  max-width: 100%;
+}
+
+/* Imagens dentro de containers flex/grid não quebram aspecto */
+.card img, .service-card img, .img-wrapper img,
+.corte-card img, .imovel img, .galeria img, .sobre img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: attr(width) / attr(height); /* Fallback progressivo */
+}

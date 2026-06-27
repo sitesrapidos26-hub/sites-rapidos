@@ -1,13 +1,22 @@
+# =========================
 # Node.js
+# =========================
 node_modules/
-npm-debug.log
-yarn-error.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# Mac/Windows
+# =========================
+# Sistema Operacional
+# =========================
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# IDEs / Editores
+# =========================
+# IDE / Editores
+# =========================
 .vscode/
 .idea/
 *.suo
@@ -15,18 +24,60 @@ Thumbs.db
 *.njsproj
 *.sln
 
-# Variáveis de Ambiente / Senhas
+# =========================
+# Variáveis de Ambiente
+# =========================
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*
+!.env.example
 
-# Build e Logs
+# =========================
+# Build / Cache / Logs
+# =========================
 dist/
 build/
 logs/
 *.log
+.cache/
+.tmp/
+temp/
 
-# Supabase (se futuramente usar CLI local)
+# =========================
+# Ferramentas
+# =========================
+.vercel/
+.next/
+coverage/
+
+# =========================
+# Supabase
+# =========================
 supabase/.temp/
+
+# =========================
+# Arquivos locais
+# =========================
+*.bak
+*.tmp
+*.old
+
+# =========================
+# Uploads temporários
+# =========================
+*.zip
+*.rar
+
+# =========================
+# Relatórios gerados
+# =========================
+lighthouse-report*.html
+walkthrough.md
+
+# =========================
+# Scripts temporários
+# (descomente se apagar depois)
+# =========================
+# optimize.js
+# generate-seo-pages.js
+# fix-cls.js
+# inject-premium.js

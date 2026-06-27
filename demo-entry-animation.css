@@ -1,0 +1,25 @@
+/* demo-entry-animation.css — Premium Demo Entry v1.0 */
+:root{--de-e:cubic-bezier(.25,1,.5,1);--de-d:.42s}
+
+/* Bloco inicial: página inteira invisível até JS estar pronto */
+.de-init body,[de-init]{opacity:0}
+
+/* Fade-in da página */
+@keyframes de-page-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.de-page-ready{animation:de-page-in var(--de-d) var(--de-e) both}
+
+/* Elementos hero — prontos para animar (estado oculto definido por JS) */
+.de-hero-el{will-change:opacity,transform;transition:opacity var(--de-d) var(--de-e),transform var(--de-d) var(--de-e)}
+.de-hero-el.de-hidden{opacity:0;transform:translateY(14px)}
+.de-hero-el.de-visible{opacity:1;transform:none}
+
+/* Seções — scroll reveal */
+.de-reveal{will-change:opacity,transform;transition:opacity .32s var(--de-e),transform .32s var(--de-e)}
+.de-reveal.de-hidden{opacity:0;transform:translateY(8px)}
+.de-reveal.de-visible{opacity:1;transform:none}
+
+/* prefers-reduced-motion — desativa tudo */
+@media(prefers-reduced-motion:reduce){
+  .de-page-ready{animation:none!important}
+  .de-hero-el,.de-reveal{transition:none!important;opacity:1!important;transform:none!important}
+}
